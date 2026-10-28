@@ -1,0 +1,257 @@
+[{"stream_name":"stdout","time":15.191419561,"data":"downloading pretrained_models/vit_base_patch14_reg4_dinov2_lvd142m_pc24_onlyclassifier_then_all/model_best.pth.tar (1.48 GB)\n"}
+,{"stream_name":"stdout","time":505.941775955,"data":"saved EMA weights: 370 MB\n"}
+,{"stream_name":"stdout","time":509.034908755,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.8/23.8 MB 78.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":509.068632847,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 754.2/754.2 kB 27.6 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":509.090841133,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 185.8/185.8 kB 11.0 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":513.216019416,"data":"extracting /kaggle/input/notebooks/thestonedape/leafscan-preprocess-dataset/leafscan_data_pp.tar\n"}
+,{"stream_name":"stdout","time":576.896621944,"data":"Tue Oct 20 11:00:24 2026       \n"}
+,{"stream_name":"stdout","time":576.896665885,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":576.89667285,"data":"| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n"}
+,{"stream_name":"stdout","time":576.896684682,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":576.89668911,"data":"| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n"}
+,{"stream_name":"stdout","time":576.896692656,"data":"| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n"}
+,{"stream_name":"stdout","time":576.896696112,"data":"|                                         |                        |               MIG M. |\n"}
+,{"stream_name":"stdout","time":576.896699527,"data":"|=========================================+========================+======================|\n"}
+,{"stream_name":"stdout","time":576.928518152,"data":"|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":576.928554519,"data":"| N/A   36C    P8              9W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":576.92856129,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":576.928566339,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":576.928571451,"data":"|   1  Tesla T4                       Off |   00000000:00:05.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":576.928576261,"data":"| N/A   37C    P8              9W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":576.928580973,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":576.928585684,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":576.929110936,"data":"\n"}
+,{"stream_name":"stdout","time":576.929122459,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":576.929127307,"data":"| Processes:                                                                              |\n"}
+,{"stream_name":"stdout","time":576.929131823,"data":"|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n"}
+,{"stream_name":"stdout","time":576.929152117,"data":"|        ID   ID                                                               Usage      |\n"}
+,{"stream_name":"stdout","time":576.929156519,"data":"|=========================================================================================|\n"}
+,{"stream_name":"stdout","time":576.930719977,"data":"|  No running processes found                                                             |\n"}
+,{"stream_name":"stdout","time":576.930731351,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":577.257009083,"data":"$ /usr/bin/python3 -u train.py --data /tmp/leafscan_pp --out /kaggle/working/run --arch plantclef_vitb14 --checkpoint /tmp/plantclef_vitb14_ema.pth --img 224 --epochs 10 --batch 128 --lr 0.0002 --wd 0.05 --warmup 1 --layer-decay 0.75 --freeze-blocks 4 --ema 0.9995 --mixup 0.8 --cutmix 1.0 --mix-prob 0.5 --smoothing 0.1 --degrade 0.5 --field-boost 1.5 --workers 4\n"}
+,{"stream_name":"stdout","time":590.73404622,"data":"device cuda | classes 95 | train 84837 val 10601 test 10598\n"}
+,{"stream_name":"stdout","time":596.582451515,"data":"trainable params 56.8M of 85.8M\n"}
+,{"stream_name":"stdout","time":596.62880295,"data":"using 2 GPUs (DataParallel)\n"}
+,{"stream_name":"stdout","time":600.727785017,"data":"  ep 1 it 0/662 loss 4.562 lr 6.04e-07 31 img/s\n"}
+,{"stream_name":"stdout","time":709.205630827,"data":"  ep 1 it 100/662 loss 4.099 lr 3.08e-05 115 img/s\n"}
+,{"stream_name":"stdout","time":826.391079335,"data":"  ep 1 it 200/662 loss 2.724 lr 6.10e-05 112 img/s\n"}
+,{"stream_name":"stdout","time":944.351713464,"data":"  ep 1 it 300/662 loss 1.905 lr 9.12e-05 111 img/s\n"}
+,{"stream_name":"stdout","time":1063.271587096,"data":"  ep 1 it 400/662 loss 3.028 lr 1.21e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":1182.007373751,"data":"  ep 1 it 500/662 loss 1.406 lr 1.52e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":1301.094325881,"data":"  ep 1 it 600/662 loss 1.265 lr 1.82e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":1420.33166667,"data":"[epoch 1/10] train loss 2.548 | val acc 0.9167 macroF1 0.8581 lab 0.9760 field 0.8517 | 824s\n"}
+,{"stream_name":"stdout","time":1422.545883045,"data":"  ep 2 it 0/662 loss 2.077 lr 2.00e-04 123 img/s\n"}
+,{"stream_name":"stdout","time":1539.622995328,"data":"  ep 2 it 100/662 loss 1.215 lr 2.00e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":1656.302696314,"data":"  ep 2 it 200/662 loss 1.431 lr 1.99e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":1774.20630032,"data":"  ep 2 it 300/662 loss 2.301 lr 1.99e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":1892.197133783,"data":"  ep 2 it 400/662 loss 1.137 lr 1.98e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":2010.30949604,"data":"  ep 2 it 500/662 loss 1.064 lr 1.97e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":2129.300525502,"data":"  ep 2 it 600/662 loss 1.747 lr 1.95e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":2246.707278467,"data":"[epoch 2/10] train loss 1.526 | val acc 0.9377 macroF1 0.8856 lab 0.9854 field 0.8856 | 825s\n"}
+,{"stream_name":"stdout","time":2249.534741385,"data":"  ep 3 it 0/662 loss 1.070 lr 1.94e-04 105 img/s\n"}
+,{"stream_name":"stdout","time":2365.919975561,"data":"  ep 3 it 100/662 loss 1.008 lr 1.92e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":2482.575336242,"data":"  ep 3 it 200/662 loss 1.020 lr 1.90e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":2599.41426916,"data":"  ep 3 it 300/662 loss 1.123 lr 1.87e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":2716.468099568,"data":"  ep 3 it 400/662 loss 1.108 lr 1.85e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":2833.851043722,"data":"  ep 3 it 500/662 loss 1.964 lr 1.82e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":2951.141516231,"data":"  ep 3 it 600/662 loss 1.036 lr 1.79e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":3067.889566393,"data":"[epoch 3/10] train loss 1.455 | val acc 0.9437 macroF1 0.8959 lab 0.9903 field 0.8927 | 820s\n"}
+,{"stream_name":"stdout","time":3070.662032677,"data":"  ep 4 it 0/662 loss 2.087 lr 1.77e-04 108 img/s\n"}
+,{"stream_name":"stdout","time":3188.085629118,"data":"  ep 4 it 100/662 loss 1.080 lr 1.73e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":3305.215174373,"data":"  ep 4 it 200/662 loss 1.516 lr 1.70e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":3422.364984372,"data":"  ep 4 it 300/662 loss 0.958 lr 1.66e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":3539.694393851,"data":"  ep 4 it 400/662 loss 1.009 lr 1.62e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":3657.597681636,"data":"  ep 4 it 500/662 loss 1.025 lr 1.57e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":3775.995505654,"data":"  ep 4 it 600/662 loss 1.557 lr 1.53e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":3893.543530736,"data":"[epoch 4/10] train loss 1.383 | val acc 0.9463 macroF1 0.8981 lab 0.9915 field 0.8968 | 824s\n"}
+,{"stream_name":"stdout","time":3896.42062653,"data":"  ep 5 it 0/662 loss 1.718 lr 1.50e-04 104 img/s\n"}
+,{"stream_name":"stdout","time":4013.580079902,"data":"  ep 5 it 100/662 loss 1.020 lr 1.46e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":4130.188405472,"data":"  ep 5 it 200/662 loss 1.001 lr 1.41e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":4247.051985251,"data":"  ep 5 it 300/662 loss 1.137 lr 1.36e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":4363.969974303,"data":"  ep 5 it 400/662 loss 1.860 lr 1.31e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":4481.377328578,"data":"  ep 5 it 500/662 loss 0.978 lr 1.26e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":4598.856378267,"data":"  ep 5 it 600/662 loss 0.972 lr 1.21e-04 109 img/s\n"}
+,{"stream_name":"stdout","time":4716.122179195,"data":"[epoch 5/10] train loss 1.346 | val acc 0.9492 macroF1 0.9028 lab 0.9924 field 0.9018 | 821s\n"}
+,{"stream_name":"stdout","time":4719.222470142,"data":"  ep 6 it 0/662 loss 0.968 lr 1.18e-04 100 img/s\n"}
+,{"stream_name":"stdout","time":4835.71470039,"data":"  ep 6 it 100/662 loss 1.988 lr 1.13e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":4952.138870176,"data":"  ep 6 it 200/662 loss 1.849 lr 1.07e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":5068.550083411,"data":"  ep 6 it 300/662 loss 1.028 lr 1.02e-04 110 img/s\n"}
+,{"stream_name":"stdout","time":5185.813631803,"data":"  ep 6 it 400/662 loss 0.900 lr 9.68e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":5303.741108184,"data":"  ep 6 it 500/662 loss 1.754 lr 9.16e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":5421.798239321,"data":"  ep 6 it 600/662 loss 0.972 lr 8.64e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":5539.463022974,"data":"[epoch 6/10] train loss 1.320 | val acc 0.9508 macroF1 0.9030 lab 0.9939 field 0.9035 | 822s\n"}
+,{"stream_name":"stdout","time":5542.594441472,"data":"  ep 7 it 0/662 loss 0.985 lr 8.32e-05 103 img/s\n"}
+,{"stream_name":"stdout","time":5659.606105302,"data":"  ep 7 it 100/662 loss 1.927 lr 7.80e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":5776.202023155,"data":"  ep 7 it 200/662 loss 0.921 lr 7.30e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":5893.732882065,"data":"  ep 7 it 300/662 loss 0.968 lr 6.80e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":6012.465829673,"data":"  ep 7 it 400/662 loss 0.930 lr 6.30e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":6131.294517969,"data":"  ep 7 it 500/662 loss 1.458 lr 5.82e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":6249.582830018,"data":"  ep 7 it 600/662 loss 1.616 lr 5.35e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":6367.351020606,"data":"[epoch 7/10] train loss 1.282 | val acc 0.9526 macroF1 0.9050 lab 0.9937 field 0.9075 | 826s\n"}
+,{"stream_name":"stdout","time":6370.516319156,"data":"  ep 8 it 0/662 loss 1.827 lr 5.07e-05 101 img/s\n"}
+,{"stream_name":"stdout","time":6487.05746159,"data":"  ep 8 it 100/662 loss 0.857 lr 4.62e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":6603.355502516,"data":"  ep 8 it 200/662 loss 0.878 lr 4.19e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":6720.205312427,"data":"  ep 8 it 300/662 loss 2.009 lr 3.78e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":6837.348088087,"data":"  ep 8 it 400/662 loss 0.890 lr 3.38e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":6955.248207751,"data":"  ep 8 it 500/662 loss 0.899 lr 3.00e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":7073.132265112,"data":"  ep 8 it 600/662 loss 1.829 lr 2.64e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":7190.333926499,"data":"[epoch 8/10] train loss 1.260 | val acc 0.9539 macroF1 0.9034 lab 0.9949 field 0.9089 | 821s\n"}
+,{"stream_name":"stdout","time":7192.903681527,"data":"  ep 9 it 0/662 loss 0.852 lr 2.42e-05 106 img/s\n"}
+,{"stream_name":"stdout","time":7310.091128354,"data":"  ep 9 it 100/662 loss 0.985 lr 2.10e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":7426.781220327,"data":"  ep 9 it 200/662 loss 0.872 lr 1.79e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":7543.552380491,"data":"  ep 9 it 300/662 loss 0.828 lr 1.51e-05 109 img/s\n"}
+,{"stream_name":"stdout","time":7659.770780493,"data":"  ep 9 it 400/662 loss 0.910 lr 1.26e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":7671.436211157,"data":"  GPU JPEG decode failed (Error while decoding JPEG images: Failed to transfer jpeg to device: 5\n"}
+,{"stream_name":"stdout","time":7671.43626965,"data":"Exception raised from decode_images at /__w/vision/vision/pytorch/vision/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.cpp:559 (most recent call first):\n"}
+,{"stream_name":"stdout","time":7671.436277339,"data":"frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e) + 0x9d (0x7f2b6397205d in /usr/local/lib/python3.13/dist-packages/torch/lib/libc10.so)\n"}
+,{"stream_name":"stdout","time":7671.436287855,"data":"frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e const\u0026) + 0xc3 (0x7f2b639066fd in /usr/local/lib/python3.13/dist-packages/torch/lib/libc10.so)\n"}
+,{"stream_name":"stdout","time":7671.436293672,"data":"frame #2: vision::image::CUDAJpegDecoder::decode_images(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, nvjpegOutputFormat_t const\u0026) + 0xddf (0x7f2a52cb0daf in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7671.436299814,"data":"frame #3: vision::image::decode_jpegs_cuda(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device) + 0x2bf (0x7f2a52cb121f in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7671.436307598,"data":"frame #4: c10::impl::make_boxed_from_unboxed_functor\u003cc10::impl::detail::WrapFunctionIntoRuntimeFunctor_\u003cstd::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e (*)(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device), std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e, c10::guts::typelist::typelist\u003cstd::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device\u003e \u003e, true\u003e::call(c10::OperatorKernel*, c10::OperatorHandle const\u0026, c10::DispatchKeySet, std::vector\u003cc10::IValue, std::allocator\u003cc10::IValue\u003e \u003e*) + 0xb5 (0x7f2a52cbe645 in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7671.436327336,"data":"frame #5: \u003cunknown function\u003e + 0x66fbc6c (0x7f2a93407c6c in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_cpu.so)\n"}
+,{"stream_name":"stdout","time":7671.436333982,"data":"frame #6: \u003cunknown function\u003e + 0xb24b94 (0x7f2aa2ec3b94 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7671.436338829,"data":"frame #7: \u003cunknown function\u003e + 0xb25098 (0x7f2aa2ec4098 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7671.436343509,"data":"frame #8: torch::jit::_get_operation_for_overload_or_packet(std::vector\u003cstd::shared_ptr\u003ctorch::jit::Operator\u003e, std::allocator\u003cstd::shared_ptr\u003ctorch::jit::Operator\u003e \u003e \u003e const\u0026, c10::Symbol, pybind11::args const\u0026, pybind11::kwargs const\u0026, bool, std::optional\u003cc10::DispatchKey\u003e) + 0x38 (0x7f2aa2ec43a8 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7671.436349845,"data":"frame #9: \u003cunknown function\u003e + 0xa08c9d (0x7f2aa2da7c9d in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7671.436354424,"data":"frame #10: \u003cunknown function\u003e + 0x413480 (0x7f2aa27b2480 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7671.436359366,"data":"frame #11: /usr/bin/python3() [0x591fe3]\n"}
+,{"stream_name":"stdout","time":7671.436363716,"data":"frame #12: /usr/bin/python3() [0x65b583]\n"}
+,{"stream_name":"stdout","time":7671.436368167,"data":"frame #13: /usr/bin/python3() [0x43fe09]\n"}
+,{"stream_name":"stdout","time":7671.436372716,"data":"frame #14: /usr/bin/python3() [0x64bb3a]\n"}
+,{"stream_name":"stdout","time":7671.436376919,"data":"frame #15: /usr/bin/python3() [0x69a87a]\n"}
+,{"stream_name":"stdout","time":7671.436381367,"data":"frame #16: _PyObject_MakeTpCall + 0x2a3 (0x56e213 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7671.436385654,"data":"frame #17: /usr/bin/python3() [0x445e04]\n"}
+,{"stream_name":"stdout","time":7671.436389853,"data":"frame #18: PyEval_EvalCode + 0x9a (0x64d82a in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7671.436394199,"data":"frame #19: /usr/bin/python3() [0x689ad2]\n"}
+,{"stream_name":"stdout","time":7671.436398907,"data":"frame #20: /usr/bin/python3() [0x686c8e]\n"}
+,{"stream_name":"stdout","time":7671.436402952,"data":"frame #21: /usr/bin/python3() [0x68380b]\n"}
+,{"stream_name":"stdout","time":7671.43640727,"data":"frame #22: /usr/bin/python3() [0x6830d4]\n"}
+,{"stream_name":"stdout","time":7671.436411477,"data":"frame #23: /usr/bin/python3() [0x682ec5]\n"}
+,{"stream_name":"stdout","time":7671.436415953,"data":"frame #24: Py_RunMain + 0x390 (0x681920 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7671.436420578,"data":"frame #25: Py_BytesMain + 0x2d (0x63c9bd in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7671.43642513,"data":"frame #26: \u003cunknown function\u003e + 0x2a1ca (0x7f2b6eec01ca in /lib/x86_64-linux-gnu/libc.so.6)\n"}
+,{"stream_name":"stdout","time":7671.436429005,"data":"frame #27: __libc_start_main + 0x8b (0x7f2b6eec028b in /lib/x86_64-linux-gnu/libc.so.6)\n"}
+,{"stream_name":"stdout","time":7671.436437864,"data":"frame #28: _start + 0x25 (0x63be55 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7671.436442022,"data":"); decoding this batch on CPU\n"}
+,{"stream_name":"stdout","time":7776.003967465,"data":"  ep 9 it 500/662 loss 1.134 lr 1.02e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":7785.439967341,"data":"  GPU JPEG decode failed (Error while decoding JPEG images: Failed to decode jpeg stream: 5\n"}
+,{"stream_name":"stdout","time":7785.440003407,"data":"Exception raised from decode_images at /__w/vision/vision/pytorch/vision/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.cpp:573 (most recent call first):\n"}
+,{"stream_name":"stdout","time":7785.440030161,"data":"frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e) + 0x9d (0x7f2b6397205d in /usr/local/lib/python3.13/dist-packages/torch/lib/libc10.so)\n"}
+,{"stream_name":"stdout","time":7785.440038998,"data":"frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e const\u0026) + 0xc3 (0x7f2b639066fd in /usr/local/lib/python3.13/dist-packages/torch/lib/libc10.so)\n"}
+,{"stream_name":"stdout","time":7785.440044794,"data":"frame #2: vision::image::CUDAJpegDecoder::decode_images(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, nvjpegOutputFormat_t const\u0026) + 0xe6f (0x7f2a52cb0e3f in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7785.440050237,"data":"frame #3: vision::image::decode_jpegs_cuda(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device) + 0x2bf (0x7f2a52cb121f in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7785.440058436,"data":"frame #4: c10::impl::make_boxed_from_unboxed_functor\u003cc10::impl::detail::WrapFunctionIntoRuntimeFunctor_\u003cstd::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e (*)(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device), std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e, c10::guts::typelist::typelist\u003cstd::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device\u003e \u003e, true\u003e::call(c10::OperatorKernel*, c10::OperatorHandle const\u0026, c10::DispatchKeySet, std::vector\u003cc10::IValue, std::allocator\u003cc10::IValue\u003e \u003e*) + 0xb5 (0x7f2a52cbe645 in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7785.440066964,"data":"frame #5: \u003cunknown function\u003e + 0x66fbc6c (0x7f2a93407c6c in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_cpu.so)\n"}
+,{"stream_name":"stdout","time":7785.440079041,"data":"frame #6: \u003cunknown function\u003e + 0xb24b94 (0x7f2aa2ec3b94 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7785.440085651,"data":"frame #7: \u003cunknown function\u003e + 0xb25098 (0x7f2aa2ec4098 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7785.440093731,"data":"frame #8: torch::jit::_get_operation_for_overload_or_packet(std::vector\u003cstd::shared_ptr\u003ctorch::jit::Operator\u003e, std::allocator\u003cstd::shared_ptr\u003ctorch::jit::Operator\u003e \u003e \u003e const\u0026, c10::Symbol, pybind11::args const\u0026, pybind11::kwargs const\u0026, bool, std::optional\u003cc10::DispatchKey\u003e) + 0x38 (0x7f2aa2ec43a8 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7785.440097946,"data":"frame #9: \u003cunknown function\u003e + 0xa08c9d (0x7f2aa2da7c9d in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7785.440123133,"data":"frame #10: \u003cunknown function\u003e + 0x413480 (0x7f2aa27b2480 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7785.440128279,"data":"frame #11: /usr/bin/python3() [0x591fe3]\n"}
+,{"stream_name":"stdout","time":7785.440132458,"data":"frame #12: /usr/bin/python3() [0x65b583]\n"}
+,{"stream_name":"stdout","time":7785.440136545,"data":"frame #13: /usr/bin/python3() [0x43fe09]\n"}
+,{"stream_name":"stdout","time":7785.440140067,"data":"frame #14: /usr/bin/python3() [0x64bb3a]\n"}
+,{"stream_name":"stdout","time":7785.440143514,"data":"frame #15: /usr/bin/python3() [0x69a87a]\n"}
+,{"stream_name":"stdout","time":7785.440146939,"data":"frame #16: _PyObject_MakeTpCall + 0x2a3 (0x56e213 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7785.44015042,"data":"frame #17: /usr/bin/python3() [0x445e04]\n"}
+,{"stream_name":"stdout","time":7785.440153901,"data":"frame #18: PyEval_EvalCode + 0x9a (0x64d82a in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7785.440157339,"data":"frame #19: /usr/bin/python3() [0x689ad2]\n"}
+,{"stream_name":"stdout","time":7785.440160724,"data":"frame #20: /usr/bin/python3() [0x686c8e]\n"}
+,{"stream_name":"stdout","time":7785.440164137,"data":"frame #21: /usr/bin/python3() [0x68380b]\n"}
+,{"stream_name":"stdout","time":7785.440167558,"data":"frame #22: /usr/bin/python3() [0x6830d4]\n"}
+,{"stream_name":"stdout","time":7785.440170982,"data":"frame #23: /usr/bin/python3() [0x682ec5]\n"}
+,{"stream_name":"stdout","time":7785.440174419,"data":"frame #24: Py_RunMain + 0x390 (0x681920 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7785.440177852,"data":"frame #25: Py_BytesMain + 0x2d (0x63c9bd in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7785.440181399,"data":"frame #26: \u003cunknown function\u003e + 0x2a1ca (0x7f2b6eec01ca in /lib/x86_64-linux-gnu/libc.so.6)\n"}
+,{"stream_name":"stdout","time":7785.440185056,"data":"frame #27: __libc_start_main + 0x8b (0x7f2b6eec028b in /lib/x86_64-linux-gnu/libc.so.6)\n"}
+,{"stream_name":"stdout","time":7785.440188587,"data":"frame #28: _start + 0x25 (0x63be55 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7785.440194131,"data":"); decoding this batch on CPU\n"}
+,{"stream_name":"stdout","time":7790.111048711,"data":"  GPU JPEG decode failed (Error while decoding JPEG images: Failed to decode jpeg stream: 5\n"}
+,{"stream_name":"stdout","time":7790.111080972,"data":"Exception raised from decode_images at /__w/vision/vision/pytorch/vision/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.cpp:573 (most recent call first):\n"}
+,{"stream_name":"stdout","time":7790.111087724,"data":"frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e) + 0x9d (0x7f2b6397205d in /usr/local/lib/python3.13/dist-packages/torch/lib/libc10.so)\n"}
+,{"stream_name":"stdout","time":7790.111096182,"data":"frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e const\u0026) + 0xc3 (0x7f2b639066fd in /usr/local/lib/python3.13/dist-packages/torch/lib/libc10.so)\n"}
+,{"stream_name":"stdout","time":7790.111102358,"data":"frame #2: vision::image::CUDAJpegDecoder::decode_images(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, nvjpegOutputFormat_t const\u0026) + 0xe6f (0x7f2a52cb0e3f in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7790.11110743,"data":"frame #3: vision::image::decode_jpegs_cuda(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device) + 0x2bf (0x7f2a52cb121f in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7790.111125269,"data":"frame #4: c10::impl::make_boxed_from_unboxed_functor\u003cc10::impl::detail::WrapFunctionIntoRuntimeFunctor_\u003cstd::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e (*)(std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device), std::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e, c10::guts::typelist::typelist\u003cstd::vector\u003cat::Tensor, std::allocator\u003cat::Tensor\u003e \u003e const\u0026, long, c10::Device\u003e \u003e, true\u003e::call(c10::OperatorKernel*, c10::OperatorHandle const\u0026, c10::DispatchKeySet, std::vector\u003cc10::IValue, std::allocator\u003cc10::IValue\u003e \u003e*) + 0xb5 (0x7f2a52cbe645 in /usr/local/lib/python3.13/dist-packages/torchvision/image.so)\n"}
+,{"stream_name":"stdout","time":7790.111133581,"data":"frame #5: \u003cunknown function\u003e + 0x66fbc6c (0x7f2a93407c6c in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_cpu.so)\n"}
+,{"stream_name":"stdout","time":7790.111138868,"data":"frame #6: \u003cunknown function\u003e + 0xb24b94 (0x7f2aa2ec3b94 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7790.111142844,"data":"frame #7: \u003cunknown function\u003e + 0xb25098 (0x7f2aa2ec4098 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7790.111147712,"data":"frame #8: torch::jit::_get_operation_for_overload_or_packet(std::vector\u003cstd::shared_ptr\u003ctorch::jit::Operator\u003e, std::allocator\u003cstd::shared_ptr\u003ctorch::jit::Operator\u003e \u003e \u003e const\u0026, c10::Symbol, pybind11::args const\u0026, pybind11::kwargs const\u0026, bool, std::optional\u003cc10::DispatchKey\u003e) + 0x38 (0x7f2aa2ec43a8 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7790.111153756,"data":"frame #9: \u003cunknown function\u003e + 0xa08c9d (0x7f2aa2da7c9d in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7790.111158014,"data":"frame #10: \u003cunknown function\u003e + 0x413480 (0x7f2aa27b2480 in /usr/local/lib/python3.13/dist-packages/torch/lib/libtorch_python.so)\n"}
+,{"stream_name":"stdout","time":7790.111162156,"data":"frame #11: /usr/bin/python3() [0x591fe3]\n"}
+,{"stream_name":"stdout","time":7790.111166367,"data":"frame #12: /usr/bin/python3() [0x65b583]\n"}
+,{"stream_name":"stdout","time":7790.111170648,"data":"frame #13: /usr/bin/python3() [0x43fe09]\n"}
+,{"stream_name":"stdout","time":7790.111175339,"data":"frame #14: /usr/bin/python3() [0x64bb3a]\n"}
+,{"stream_name":"stdout","time":7790.111179732,"data":"frame #15: /usr/bin/python3() [0x69a87a]\n"}
+,{"stream_name":"stdout","time":7790.111184032,"data":"frame #16: _PyObject_MakeTpCall + 0x2a3 (0x56e213 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7790.11118895,"data":"frame #17: /usr/bin/python3() [0x445e04]\n"}
+,{"stream_name":"stdout","time":7790.111193963,"data":"frame #18: PyEval_EvalCode + 0x9a (0x64d82a in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7790.11119823,"data":"frame #19: /usr/bin/python3() [0x689ad2]\n"}
+,{"stream_name":"stdout","time":7790.111202387,"data":"frame #20: /usr/bin/python3() [0x686c8e]\n"}
+,{"stream_name":"stdout","time":7790.111206057,"data":"frame #21: /usr/bin/python3() [0x68380b]\n"}
+,{"stream_name":"stdout","time":7790.111209832,"data":"frame #22: /usr/bin/python3() [0x6830d4]\n"}
+,{"stream_name":"stdout","time":7790.111213437,"data":"frame #23: /usr/bin/python3() [0x682ec5]\n"}
+,{"stream_name":"stdout","time":7790.111220982,"data":"frame #24: Py_RunMain + 0x390 (0x681920 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7790.111224779,"data":"frame #25: Py_BytesMain + 0x2d (0x63c9bd in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7790.111228399,"data":"frame #26: \u003cunknown function\u003e + 0x2a1ca (0x7f2b6eec01ca in /lib/x86_64-linux-gnu/libc.so.6)\n"}
+,{"stream_name":"stdout","time":7790.111232371,"data":"frame #27: __libc_start_main + 0x8b (0x7f2b6eec028b in /lib/x86_64-linux-gnu/libc.so.6)\n"}
+,{"stream_name":"stdout","time":7790.111236258,"data":"frame #28: _start + 0x25 (0x63be55 in /usr/bin/python3)\n"}
+,{"stream_name":"stdout","time":7790.111240206,"data":"); decoding this batch on CPU\n"}
+,{"stream_name":"stderr","time":7798.998688963,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":7798.999723681,"data":"  File \"/tmp/leafscan_code/train.py\", line 388, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":7798.999740027,"data":"    main()\n"}
+,{"stream_name":"stderr","time":7798.999744323,"data":"    ~~~~^^\n"}
+,{"stream_name":"stderr","time":7798.999802088,"data":"  File \"/tmp/leafscan_code/train.py\", line 351, in main\n"}
+,{"stream_name":"stderr","time":7798.999810586,"data":"    scaler.scale(loss).backward()\n"}
+,{"stream_name":"stderr","time":7798.999814972,"data":"    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n"}
+,{"stream_name":"stderr","time":7798.999822422,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/_tensor.py\", line 631, in backward\n"}
+,{"stream_name":"stderr","time":7798.999827395,"data":"    torch.autograd.backward(\n"}
+,{"stream_name":"stderr","time":7798.999831259,"data":"    ~~~~~~~~~~~~~~~~~~~~~~~^\n"}
+,{"stream_name":"stderr","time":7798.99983498,"data":"        self, gradient, retain_graph, create_graph, inputs=inputs\n"}
+,{"stream_name":"stderr","time":7798.999838779,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7798.999844631,"data":"    )\n"}
+,{"stream_name":"stderr","time":7798.999852684,"data":"    ^\n"}
+,{"stream_name":"stderr","time":7798.999948597,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/autograd/__init__.py\", line 381, in backward\n"}
+,{"stream_name":"stderr","time":7798.999959795,"data":"    _engine_run_backward(\n"}
+,{"stream_name":"stderr","time":7798.999963932,"data":"    ~~~~~~~~~~~~~~~~~~~~^\n"}
+,{"stream_name":"stderr","time":7798.999967707,"data":"        tensors,\n"}
+,{"stream_name":"stderr","time":7798.9999713,"data":"        ^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7798.999978537,"data":"    ...\u003c5 lines\u003e...\n"}
+,{"stream_name":"stderr","time":7798.999983315,"data":"        accumulate_grad=True,\n"}
+,{"stream_name":"stderr","time":7798.999987394,"data":"        ^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7798.999991111,"data":"    )\n"}
+,{"stream_name":"stderr","time":7798.999995657,"data":"    ^\n"}
+,{"stream_name":"stderr","time":7799.000002309,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/autograd/graph.py\", line 869, in _engine_run_backward\n"}
+,{"stream_name":"stderr","time":7799.000006453,"data":"    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\n"}
+,{"stream_name":"stderr","time":7799.000010578,"data":"           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7799.000014503,"data":"        t_outputs, *args, **kwargs\n"}
+,{"stream_name":"stderr","time":7799.00001903,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7799.000034223,"data":"    )  # Calls into the C++ engine to run the backward pass\n"}
+,{"stream_name":"stderr","time":7799.000038276,"data":"    ^\n"}
+,{"stream_name":"stderr","time":7799.000137501,"data":"torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 26.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 26.81 MiB is free. Including non-PyTorch memory, this process has 14.52 GiB memory in use. Of the allocated memory 5.30 GiB is allocated by PyTorch, and 678.08 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n"}
+,{"stream_name":"stderr","time":7805.295405579,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":7805.296691238,"data":"  File \"/kaggle/src/script.py\", line 62, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":7805.296713275,"data":"    run(sys.executable, \"-u\", \"train.py\", \"--data\", DATA, \"--out\", RUN,\n"}
+,{"stream_name":"stderr","time":7805.296718377,"data":"    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7805.29672268,"data":"        \"--arch\", \"plantclef_vitb14\", \"--checkpoint\", PLANTCLEF, \"--img\", 224,\n"}
+,{"stream_name":"stderr","time":7805.296726569,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7805.296730645,"data":"    ...\u003c2 lines\u003e...\n"}
+,{"stream_name":"stderr","time":7805.296734846,"data":"        \"--smoothing\", 0.1, \"--degrade\", 0.5, \"--field-boost\", 1.5, \"--workers\", 4, *[],\n"}
+,{"stream_name":"stderr","time":7805.296739117,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7805.29674304,"data":"        timeout=14400)   # hard stop: a hang can never eat the GPU quota again\n"}
+,{"stream_name":"stderr","time":7805.296747107,"data":"        ^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7805.296750881,"data":"  File \"/kaggle/src/script.py\", line 15, in run\n"}
+,{"stream_name":"stderr","time":7805.296754418,"data":"    subprocess.run([str(a) for a in args], cwd=CODE, check=True, **kw)\n"}
+,{"stream_name":"stderr","time":7805.296758664,"data":"    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":7805.296762684,"data":"  File \"/usr/lib/python3.13/subprocess.py\", line 577, in run\n"}
+,{"stream_name":"stderr","time":7805.296766491,"data":"    raise CalledProcessError(retcode, process.args,\n"}
+,{"stream_name":"stderr","time":7805.296770819,"data":"                             output=stdout, stderr=stderr)\n"}
+,{"stream_name":"stderr","time":7805.296774609,"data":"subprocess.CalledProcessError: Command '['/usr/bin/python3', '-u', 'train.py', '--data', '/tmp/leafscan_pp', '--out', '/kaggle/working/run', '--arch', 'plantclef_vitb14', '--checkpoint', '/tmp/plantclef_vitb14_ema.pth', '--img', '224', '--epochs', '10', '--batch', '128', '--lr', '0.0002', '--wd', '0.05', '--warmup', '1', '--layer-decay', '0.75', '--freeze-blocks', '4', '--ema', '0.9995', '--mixup', '0.8', '--cutmix', '1.0', '--mix-prob', '0.5', '--smoothing', '0.1', '--degrade', '0.5', '--field-boost', '1.5', '--workers', '4']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7807.86863819,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":7807.868680026,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":7808.15753961,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":7808.157574222,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":7808.939539301,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":7809.968686917,"data":"[NbConvertApp] Writing 371605 bytes to __results__.html\n"}
+]

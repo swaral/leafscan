@@ -1,0 +1,76 @@
+{
+  "birefnet_1024": {
+    "gpu_ms_per_img": 166.2,
+    "gate_by_source": {
+      "plantvillage": {
+        "ok": 58,
+        "cuts_leaf": 1,
+        "too_small": 1
+      },
+      "plantdoc": {
+        "cuts_leaf": 19,
+        "too_small": 15,
+        "fragmented": 6,
+        "ok": 20
+      },
+      "plantwild": {
+        "ok": 20,
+        "fragmented": 4,
+        "cuts_leaf": 24,
+        "too_small": 12
+      },
+      "ccmt": {
+        "ok": 25,
+        "cuts_leaf": 23,
+        "fragmented": 3,
+        "too_small": 9
+      },
+      "plantpathology": {
+        "cuts_leaf": 46,
+        "too_small": 13,
+        "ok": 1
+      }
+    },
+    "kept_raw_share": 0.587,
+    "leafy_pixels_lost_raw_mask_mean": 0.494,
+    "leafy_pixels_lost_refined_mean": 0.086
+  },
+  "birefnet_512": {
+    "gpu_ms_per_img": 44.5,
+    "gate_by_source": {
+      "plantvillage": {
+        "ok": 58,
+        "too_small": 2
+      },
+      "plantdoc": {
+        "too_small": 35,
+        "cuts_leaf": 6,
+        "fragmented": 3,
+        "ok": 16
+      },
+      "plantwild": {
+        "ok": 18,
+        "fragmented": 1,
+        "cuts_leaf": 15,
+        "too_small": 26
+      },
+      "ccmt": {
+        "ok": 23,
+        "cuts_leaf": 16,
+        "too_small": 20,
+        "fragmented": 1
+      },
+      "plantpathology": {
+        "too_small": 40,
+        "cuts_leaf": 18,
+        "ok": 1,
+        "fragmented": 1
+      }
+    },
+    "kept_raw_share": 0.613,
+    "leafy_pixels_lost_raw_mask_mean": 0.563,
+    "leafy_pixels_lost_refined_mean": 0.049
+  },
+  "mask_iou_512_vs_1024": 0.553,
+  "cpu_ms_per_img_512": 5358.5
+}

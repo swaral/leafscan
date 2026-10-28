@@ -1,0 +1,79 @@
+{
+  "rows": [
+    "plantvillage",
+    "plantvillage",
+    "plantvillage",
+    "plantvillage",
+    "plantvillage",
+    "plantvillage",
+    "plantdoc",
+    "plantdoc",
+    "plantdoc",
+    "plantdoc",
+    "plantdoc",
+    "plantdoc",
+    "plantwild",
+    "plantwild",
+    "plantwild",
+    "plantwild",
+    "plantwild",
+    "plantwild",
+    "ccmt",
+    "ccmt",
+    "ccmt",
+    "ccmt",
+    "ccmt",
+    "ccmt",
+    "plantpathology",
+    "plantpathology",
+    "plantpathology",
+    "plantpathology",
+    "plantpathology",
+    "plantpathology"
+  ],
+  "u2netp": {
+    "gpu": {
+      "ms_per_img": 528.0,
+      "provider": "CPUExecutionProvider"
+    },
+    "mean_cover": 0.303,
+    "cpu": {
+      "ms_per_img": 543.4,
+      "provider": "CPUExecutionProvider"
+    }
+  },
+  "u2net": {
+    "gpu": {
+      "ms_per_img": 709.1,
+      "provider": "CPUExecutionProvider"
+    },
+    "mean_cover": 0.314,
+    "cpu": {
+      "ms_per_img": 729.9,
+      "provider": "CPUExecutionProvider"
+    }
+  },
+  "isnet-general-use": {
+    "gpu": {
+      "ms_per_img": 1928.8,
+      "provider": "CPUExecutionProvider"
+    },
+    "mean_cover": 0.254,
+    "cpu": {
+      "ms_per_img": 1974.8,
+      "provider": "CPUExecutionProvider"
+    }
+  },
+  "birefnet-general-lite": {
+    "gpu": {
+      "ms_per_img": 12470.5,
+      "provider": "CPUExecutionProvider"
+    },
+    "mean_cover": 0.298,
+    "cpu": {
+      "ms_per_img": 12973.1,
+      "provider": "CPUExecutionProvider"
+    }
+  },
+  "pipeline_segmented_share": 0.867
+}

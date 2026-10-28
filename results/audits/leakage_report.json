@@ -1,0 +1,118 @@
+{
+  "n": {
+    "train": 44360,
+    "val": 5544,
+    "test": 5544
+  },
+  "path_overlap": {
+    "train-val": 0,
+    "train-test": 0,
+    "val-test": 0
+  },
+  "exact_duplicate_files_total": 23,
+  "exact_duplicates_across_splits": {
+    "train-val": 2,
+    "train-test": 4,
+    "val-test": 0
+  },
+  "near_duplicates_phash": {
+    "val->train": {
+      "<=0": 3,
+      "<=2": 38,
+      "<=4": 261,
+      "<=6": 952,
+      "<=8": 2281,
+      "<=10": 3908,
+      "same_label_at_<=4": 170
+    },
+    "test->train": {
+      "<=0": 4,
+      "<=2": 42,
+      "<=4": 264,
+      "<=6": 909,
+      "<=8": 2250,
+      "<=10": 3906,
+      "same_label_at_<=4": 159
+    },
+    "test->val": {
+      "<=0": 0,
+      "<=2": 7,
+      "<=4": 66,
+      "<=6": 291,
+      "<=8": 1006,
+      "<=10": 2376,
+      "same_label_at_<=4": 44
+    }
+  },
+  "random_cross_class_pairs_<=4": 0.0,
+  "closest_pairs": [
+    {
+      "test": "plantvillage/Tomato___Late_blight/image (1485).jpg",
+      "train": "plantvillage/Tomato___Late_blight/image (1188).jpg",
+      "hamming": 0
+    },
+    {
+      "test": "plantvillage/Tomato___Late_blight/image (1748).JPG",
+      "train": "plantvillage/Tomato___Late_blight/image (971).JPG",
+      "hamming": 0
+    },
+    {
+      "test": "plantvillage/Apple___healthy/image (1552).JPG",
+      "train": "plantvillage/Apple___healthy/image (1631).JPG",
+      "hamming": 0
+    },
+    {
+      "test": "plantvillage/Background_without_leaves/image (40).jpg",
+      "train": "plantvillage/Background_without_leaves/image (60).jpg",
+      "hamming": 0
+    },
+    {
+      "test": "plantvillage/Soybean___healthy/image (1646).JPG",
+      "train": "plantvillage/Raspberry___healthy/image (367).JPG",
+      "hamming": 2
+    },
+    {
+      "test": "plantvillage/Soybean___healthy/image (741).JPG",
+      "train": "plantvillage/Soybean___healthy/image (4053).JPG",
+      "hamming": 2
+    },
+    {
+      "test": "plantvillage/Pepper,_bell___healthy/image (1109).JPG",
+      "train": "plantvillage/Blueberry___healthy/image (382).JPG",
+      "hamming": 2
+    },
+    {
+      "test": "plantvillage/Soybean___healthy/image (4706).JPG",
+      "train": "plantvillage/Soybean___healthy/image (4395).JPG",
+      "hamming": 2
+    },
+    {
+      "test": "plantvillage/Tomato___Bacterial_spot/image (1657).JPG",
+      "train": "plantvillage/Soybean___healthy/image (4906).JPG",
+      "hamming": 2
+    },
+    {
+      "test": "plantvillage/Soybean___healthy/image (2300).JPG",
+      "train": "plantvillage/Soybean___healthy/image (949).JPG",
+      "hamming": 2
+    },
+    {
+      "test": "plantvillage/Soybean___healthy/image (258).JPG",
+      "train": "plantvillage/Soybean___healthy/image (3121).JPG",
+      "hamming": 2
+    },
+    {
+      "test": "plantvillage/Soybean___healthy/image (4962).JPG",
+      "train": "plantvillage/Soybean___healthy/image (4979).JPG",
+      "hamming": 2
+    }
+  ],
+  "test_accuracy": {
+    "all": 0.996031746031746,
+    "n_all": 5544,
+    "without_near_dups": 0.9958333333333333,
+    "n_without": 5280,
+    "on_near_dups": 1.0,
+    "n_near_dups": 264
+  }
+}

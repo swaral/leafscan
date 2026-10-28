@@ -1,0 +1,1108 @@
+{
+  "images": 9657,
+  "skipped_labels": {},
+  "classes_not_in_model": {},
+  "near_duplicates_removed": {
+    "bean_uganda": 1
+  },
+  "models": {
+    "current": {
+      "overall": {
+        "n": 9657,
+        "accuracy": 0.6649062855959408,
+        "top5": 0.9279279279279279,
+        "crop_accuracy": 0.8370094232163198,
+        "accuracy_given_crop": 0.774671222947085,
+        "mean_confidence": 0.8238962292671204,
+        "ece": 0.1590386091770933,
+        "top_confusions": [
+          [
+            "Potato___Late_blight",
+            "Potato___Early_blight",
+            473
+          ],
+          [
+            "Potato___Early_blight",
+            "Potato___Late_blight",
+            196
+          ],
+          [
+            "Potato___healthy",
+            "Potato___Early_blight",
+            170
+          ],
+          [
+            "Potato___healthy",
+            "Potato___Late_blight",
+            161
+          ],
+          [
+            "Potato___Early_blight",
+            "Tomato___Septoria_leaf_spot",
+            150
+          ]
+        ]
+      },
+      "per_dataset": {
+        "bean_uganda": {
+          "n": 862,
+          "accuracy": 0.9350348027842227,
+          "top5": 1.0,
+          "crop_accuracy": 0.994199535962877,
+          "accuracy_given_crop": 0.9396751740139211,
+          "mean_confidence": 0.9053467512130737,
+          "ece": 0.03808145543123898,
+          "top_confusions": [
+            [
+              "Bean___Rust",
+              "Bean___healthy",
+              26
+            ],
+            [
+              "Bean___healthy",
+              "Bean___Rust",
+              12
+            ],
+            [
+              "Bean___Rust",
+              "Bean___Halo_blight",
+              11
+            ],
+            [
+              "Bean___healthy",
+              "Potato___healthy",
+              3
+            ],
+            [
+              "Bean___healthy",
+              "Bean___Halo_blight",
+              2
+            ]
+          ]
+        },
+        "coffee_ecuador": {
+          "n": 865,
+          "accuracy": 0.7791907514450868,
+          "top5": 0.9895953757225433,
+          "crop_accuracy": 0.9202312138728324,
+          "accuracy_given_crop": 0.8092485549132948,
+          "mean_confidence": 0.8574491143226624,
+          "ece": 0.07891415505739993,
+          "top_confusions": [
+            [
+              "Coffee___healthy",
+              "Coffee___Leaf_rust",
+              109
+            ],
+            [
+              "Coffee___healthy",
+              "Cashew___healthy",
+              39
+            ],
+            [
+              "Coffee___healthy",
+              "Plum___healthy",
+              13
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Coffee___healthy",
+              13
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Cashew___Anthracnose",
+              6
+            ]
+          ]
+        },
+        "maize_tanzania": {
+          "n": 3000,
+          "accuracy": 0.8573333333333333,
+          "top5": 0.9873333333333333,
+          "crop_accuracy": 0.9993333333333333,
+          "accuracy_given_crop": 0.8573333333333333,
+          "mean_confidence": 0.8953959345817566,
+          "ece": 0.03806264938910805,
+          "top_confusions": [
+            [
+              "Corn___healthy",
+              "Corn___Common_rust",
+              135
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Northern_Leaf_Blight",
+              75
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+              59
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+              48
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Northern_Leaf_Blight",
+              34
+            ]
+          ]
+        },
+        "potato_ethiopia": {
+          "n": 430,
+          "accuracy": 0.9697674418604652,
+          "top5": 0.9976744186046511,
+          "crop_accuracy": 0.9813953488372092,
+          "accuracy_given_crop": 0.986046511627907,
+          "mean_confidence": 0.9602665305137634,
+          "ece": 0.029666705464207854,
+          "top_confusions": [
+            [
+              "Potato___healthy",
+              "Plum___healthy",
+              4
+            ],
+            [
+              "Potato___Late_blight",
+              "Potato___Early_blight",
+              3
+            ],
+            [
+              "Potato___healthy",
+              "Bean___healthy",
+              2
+            ],
+            [
+              "Potato___healthy",
+              "Potato___Late_blight",
+              2
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Early_blight",
+              1
+            ]
+          ]
+        },
+        "potato_india": {
+          "n": 4500,
+          "accuracy": 0.43377777777777776,
+          "top5": 0.856,
+          "crop_accuracy": 0.6688888888888889,
+          "accuracy_given_crop": 0.6611111111111111,
+          "mean_confidence": 0.7411468625068665,
+          "ece": 0.3074735506077607,
+          "top_confusions": [
+            [
+              "Potato___Late_blight",
+              "Potato___Early_blight",
+              470
+            ],
+            [
+              "Potato___Early_blight",
+              "Potato___Late_blight",
+              196
+            ],
+            [
+              "Potato___healthy",
+              "Potato___Early_blight",
+              170
+            ],
+            [
+              "Potato___healthy",
+              "Potato___Late_blight",
+              159
+            ],
+            [
+              "Potato___Early_blight",
+              "Tomato___Septoria_leaf_spot",
+              150
+            ]
+          ]
+        }
+      },
+      "per_class": {
+        "Bean___Rust": {
+          "n": 435,
+          "accuracy": 0.9126436781609195,
+          "top5": 1.0,
+          "crop_accuracy": 0.9977011494252873,
+          "accuracy_given_crop": 0.9126436781609195,
+          "mean_confidence": 0.8911139965057373,
+          "ece": 0.059311694386361656,
+          "top_confusions": [
+            [
+              "Bean___Rust",
+              "Bean___healthy",
+              26
+            ],
+            [
+              "Bean___Rust",
+              "Bean___Halo_blight",
+              11
+            ],
+            [
+              "Bean___Rust",
+              "Soybean___healthy",
+              1
+            ]
+          ]
+        },
+        "Bean___healthy": {
+          "n": 427,
+          "accuracy": 0.9578454332552693,
+          "top5": 1.0,
+          "crop_accuracy": 0.990632318501171,
+          "accuracy_given_crop": 0.9672131147540983,
+          "mean_confidence": 0.9198459982872009,
+          "ece": 0.04206820533761377,
+          "top_confusions": [
+            [
+              "Bean___healthy",
+              "Bean___Rust",
+              12
+            ],
+            [
+              "Bean___healthy",
+              "Potato___healthy",
+              3
+            ],
+            [
+              "Bean___healthy",
+              "Bean___Halo_blight",
+              2
+            ],
+            [
+              "Bean___healthy",
+              "Grape___Downy_mildew",
+              1
+            ]
+          ]
+        },
+        "Coffee___Leaf_rust": {
+          "n": 363,
+          "accuracy": 0.931129476584022,
+          "top5": 0.9972451790633609,
+          "crop_accuracy": 0.9669421487603306,
+          "accuracy_given_crop": 0.9641873278236914,
+          "mean_confidence": 0.9422317147254944,
+          "ece": 0.046738789183377566,
+          "top_confusions": [
+            [
+              "Coffee___Leaf_rust",
+              "Coffee___healthy",
+              13
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Cashew___Anthracnose",
+              6
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Pepper,_bell___Bacterial_spot",
+              5
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Cashew___healthy",
+              1
+            ]
+          ]
+        },
+        "Coffee___healthy": {
+          "n": 502,
+          "accuracy": 0.6693227091633466,
+          "top5": 0.9840637450199203,
+          "crop_accuracy": 0.8864541832669323,
+          "accuracy_given_crop": 0.6972111553784861,
+          "mean_confidence": 0.7961421608924866,
+          "ece": 0.13095715790393342,
+          "top_confusions": [
+            [
+              "Coffee___healthy",
+              "Coffee___Leaf_rust",
+              109
+            ],
+            [
+              "Coffee___healthy",
+              "Cashew___healthy",
+              39
+            ],
+            [
+              "Coffee___healthy",
+              "Plum___healthy",
+              13
+            ],
+            [
+              "Coffee___healthy",
+              "Cashew___Anthracnose",
+              3
+            ],
+            [
+              "Coffee___healthy",
+              "Banana___healthy",
+              1
+            ]
+          ]
+        },
+        "Corn___Maize_streak_virus": {
+          "n": 1500,
+          "accuracy": 0.8973333333333333,
+          "top5": 0.9933333333333333,
+          "crop_accuracy": 1.0,
+          "accuracy_given_crop": 0.8973333333333333,
+          "mean_confidence": 0.928357720375061,
+          "ece": 0.04586711945136386,
+          "top_confusions": [
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Northern_Leaf_Blight",
+              75
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+              48
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___healthy",
+              13
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Common_rust",
+              13
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Fall_armyworm",
+              3
+            ]
+          ]
+        },
+        "Corn___healthy": {
+          "n": 1500,
+          "accuracy": 0.8173333333333334,
+          "top5": 0.9813333333333333,
+          "crop_accuracy": 0.9986666666666667,
+          "accuracy_given_crop": 0.8173333333333334,
+          "mean_confidence": 0.8624340891838074,
+          "ece": 0.04707026002804438,
+          "top_confusions": [
+            [
+              "Corn___healthy",
+              "Corn___Common_rust",
+              135
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+              59
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Northern_Leaf_Blight",
+              34
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Maize_streak_virus",
+              25
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Leaf_beetle_damage",
+              13
+            ]
+          ]
+        },
+        "Potato___Early_blight": {
+          "n": 1500,
+          "accuracy": 0.406,
+          "top5": 0.8833333333333333,
+          "crop_accuracy": 0.5706666666666667,
+          "accuracy_given_crop": 0.798,
+          "mean_confidence": 0.7386474609375,
+          "ece": 0.33311116126179696,
+          "top_confusions": [
+            [
+              "Potato___Early_blight",
+              "Potato___Late_blight",
+              196
+            ],
+            [
+              "Potato___Early_blight",
+              "Tomato___Septoria_leaf_spot",
+              150
+            ],
+            [
+              "Potato___Early_blight",
+              "Tomato___Bacterial_spot",
+              118
+            ],
+            [
+              "Potato___Early_blight",
+              "Bean___Halo_blight",
+              113
+            ],
+            [
+              "Potato___Early_blight",
+              "Blueberry___Rust",
+              111
+            ]
+          ]
+        },
+        "Potato___Late_blight": {
+          "n": 1567,
+          "accuracy": 0.3388640714741544,
+          "top5": 0.790044671346522,
+          "crop_accuracy": 0.6483726866624122,
+          "accuracy_given_crop": 0.5143586470963625,
+          "mean_confidence": 0.7124142050743103,
+          "ece": 0.3739006097482585,
+          "top_confusions": [
+            [
+              "Potato___Late_blight",
+              "Potato___Early_blight",
+              473
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Septoria_leaf_spot",
+              141
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Verticillium_wilt",
+              140
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Early_blight",
+              38
+            ],
+            [
+              "Potato___Late_blight",
+              "Bean___Halo_blight",
+              35
+            ]
+          ]
+        },
+        "Potato___healthy": {
+          "n": 1863,
+          "accuracy": 0.6596886741814278,
+          "top5": 0.9221685453569511,
+          "crop_accuracy": 0.8373590982286635,
+          "accuracy_given_crop": 0.7493290391841116,
+          "mean_confidence": 0.8179019093513489,
+          "ece": 0.15821322101261817,
+          "top_confusions": [
+            [
+              "Potato___healthy",
+              "Potato___Early_blight",
+              170
+            ],
+            [
+              "Potato___healthy",
+              "Potato___Late_blight",
+              161
+            ],
+            [
+              "Potato___healthy",
+              "Soybean___healthy",
+              75
+            ],
+            [
+              "Potato___healthy",
+              "Blueberry___healthy",
+              73
+            ],
+            [
+              "Potato___healthy",
+              "Plum___healthy",
+              47
+            ]
+          ]
+        }
+      },
+      "seconds": 215,
+      "leafprep": false
+    },
+    "preprocessed": {
+      "overall": {
+        "n": 9657,
+        "accuracy": 0.6813710261986125,
+        "top5": 0.9314486900693797,
+        "crop_accuracy": 0.8712850781816299,
+        "accuracy_given_crop": 0.7648337993165579,
+        "mean_confidence": 0.8241527080535889,
+        "ece": 0.14278167700828007,
+        "top_confusions": [
+          [
+            "Potato___Late_blight",
+            "Potato___Early_blight",
+            571
+          ],
+          [
+            "Corn___healthy",
+            "Corn___Common_rust",
+            259
+          ],
+          [
+            "Potato___healthy",
+            "Potato___Early_blight",
+            180
+          ],
+          [
+            "Potato___Early_blight",
+            "Potato___Late_blight",
+            169
+          ],
+          [
+            "Potato___Early_blight",
+            "Blueberry___Rust",
+            118
+          ]
+        ]
+      },
+      "per_dataset": {
+        "bean_uganda": {
+          "n": 862,
+          "accuracy": 0.8897911832946636,
+          "top5": 0.9976798143851509,
+          "crop_accuracy": 0.9814385150812065,
+          "accuracy_given_crop": 0.9013921113689095,
+          "mean_confidence": 0.8887386322021484,
+          "ece": 0.021898264605595193,
+          "top_confusions": [
+            [
+              "Bean___Rust",
+              "Bean___Halo_blight",
+              38
+            ],
+            [
+              "Bean___Rust",
+              "Bean___healthy",
+              33
+            ],
+            [
+              "Bean___Rust",
+              "Soybean___healthy",
+              6
+            ],
+            [
+              "Bean___healthy",
+              "Bean___Rust",
+              5
+            ],
+            [
+              "Bean___healthy",
+              "Soybean___healthy",
+              4
+            ]
+          ]
+        },
+        "coffee_ecuador": {
+          "n": 865,
+          "accuracy": 0.8763005780346821,
+          "top5": 0.991907514450867,
+          "crop_accuracy": 0.9572254335260115,
+          "accuracy_given_crop": 0.9063583815028902,
+          "mean_confidence": 0.8963322043418884,
+          "ece": 0.04122817240698489,
+          "top_confusions": [
+            [
+              "Coffee___healthy",
+              "Coffee___Leaf_rust",
+              52
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Coffee___healthy",
+              18
+            ],
+            [
+              "Coffee___healthy",
+              "Plum___healthy",
+              15
+            ],
+            [
+              "Coffee___healthy",
+              "Cashew___healthy",
+              7
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Pepper,_bell___Bacterial_spot",
+              4
+            ]
+          ]
+        },
+        "maize_tanzania": {
+          "n": 3000,
+          "accuracy": 0.8003333333333333,
+          "top5": 0.9713333333333334,
+          "crop_accuracy": 0.9986666666666667,
+          "accuracy_given_crop": 0.8006666666666666,
+          "mean_confidence": 0.8804523348808289,
+          "ece": 0.0802965336541335,
+          "top_confusions": [
+            [
+              "Corn___healthy",
+              "Corn___Common_rust",
+              259
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+              82
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+              58
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Northern_Leaf_Blight",
+              50
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Maize_streak_virus",
+              43
+            ]
+          ]
+        },
+        "potato_ethiopia": {
+          "n": 430,
+          "accuracy": 0.9767441860465116,
+          "top5": 0.9976744186046511,
+          "crop_accuracy": 0.9837209302325581,
+          "accuracy_given_crop": 0.9930232558139535,
+          "mean_confidence": 0.9620588421821594,
+          "ece": 0.027073163348575013,
+          "top_confusions": [
+            [
+              "Potato___healthy",
+              "Plum___healthy",
+              5
+            ],
+            [
+              "Potato___Late_blight",
+              "Potato___Early_blight",
+              3
+            ],
+            [
+              "Potato___healthy",
+              "Bean___healthy",
+              2
+            ]
+          ]
+        },
+        "potato_india": {
+          "n": 4500,
+          "accuracy": 0.49644444444444447,
+          "top5": 0.8742222222222222,
+          "crop_accuracy": 0.738,
+          "accuracy_given_crop": 0.6657777777777778,
+          "mean_confidence": 0.7471957206726074,
+          "ece": 0.2507512145870262,
+          "top_confusions": [
+            [
+              "Potato___Late_blight",
+              "Potato___Early_blight",
+              568
+            ],
+            [
+              "Potato___healthy",
+              "Potato___Early_blight",
+              180
+            ],
+            [
+              "Potato___Early_blight",
+              "Potato___Late_blight",
+              169
+            ],
+            [
+              "Potato___Early_blight",
+              "Blueberry___Rust",
+              118
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Septoria_leaf_spot",
+              116
+            ]
+          ]
+        }
+      },
+      "per_class": {
+        "Bean___Rust": {
+          "n": 435,
+          "accuracy": 0.8160919540229885,
+          "top5": 0.9977011494252873,
+          "crop_accuracy": 0.9793103448275862,
+          "accuracy_given_crop": 0.8229885057471265,
+          "mean_confidence": 0.8476871848106384,
+          "ece": 0.04937831218215242,
+          "top_confusions": [
+            [
+              "Bean___Rust",
+              "Bean___Halo_blight",
+              38
+            ],
+            [
+              "Bean___Rust",
+              "Bean___healthy",
+              33
+            ],
+            [
+              "Bean___Rust",
+              "Soybean___healthy",
+              6
+            ],
+            [
+              "Bean___Rust",
+              "Apple___Mosaic_virus",
+              1
+            ],
+            [
+              "Bean___Rust",
+              "Cucumber___healthy",
+              1
+            ]
+          ]
+        },
+        "Bean___healthy": {
+          "n": 427,
+          "accuracy": 0.9648711943793911,
+          "top5": 0.9976580796252927,
+          "crop_accuracy": 0.9836065573770492,
+          "accuracy_given_crop": 0.9812646370023419,
+          "mean_confidence": 0.9305592775344849,
+          "ece": 0.035952247836271545,
+          "top_confusions": [
+            [
+              "Bean___healthy",
+              "Bean___Rust",
+              5
+            ],
+            [
+              "Bean___healthy",
+              "Soybean___healthy",
+              4
+            ],
+            [
+              "Bean___healthy",
+              "Bean___Halo_blight",
+              3
+            ],
+            [
+              "Bean___healthy",
+              "Maple___healthy",
+              1
+            ],
+            [
+              "Bean___healthy",
+              "Pepper,_bell___healthy",
+              1
+            ]
+          ]
+        },
+        "Coffee___Leaf_rust": {
+          "n": 363,
+          "accuracy": 0.9146005509641874,
+          "top5": 0.9889807162534435,
+          "crop_accuracy": 0.9641873278236914,
+          "accuracy_given_crop": 0.9393939393939394,
+          "mean_confidence": 0.933349609375,
+          "ece": 0.031125227117669838,
+          "top_confusions": [
+            [
+              "Coffee___Leaf_rust",
+              "Coffee___healthy",
+              18
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Pepper,_bell___Bacterial_spot",
+              4
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Cherry___Leaf_spot",
+              4
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Cashew___Anthracnose",
+              2
+            ],
+            [
+              "Coffee___Leaf_rust",
+              "Eggplant___healthy",
+              1
+            ]
+          ]
+        },
+        "Coffee___healthy": {
+          "n": 502,
+          "accuracy": 0.848605577689243,
+          "top5": 0.9940239043824701,
+          "crop_accuracy": 0.952191235059761,
+          "accuracy_given_crop": 0.8824701195219123,
+          "mean_confidence": 0.8695645928382874,
+          "ece": 0.05482731830788798,
+          "top_confusions": [
+            [
+              "Coffee___healthy",
+              "Coffee___Leaf_rust",
+              52
+            ],
+            [
+              "Coffee___healthy",
+              "Plum___healthy",
+              15
+            ],
+            [
+              "Coffee___healthy",
+              "Cashew___healthy",
+              7
+            ],
+            [
+              "Coffee___healthy",
+              "Pepper,_bell___Bacterial_spot",
+              1
+            ],
+            [
+              "Coffee___healthy",
+              "Ginger___healthy",
+              1
+            ]
+          ]
+        },
+        "Corn___Maize_streak_virus": {
+          "n": 1500,
+          "accuracy": 0.9033333333333333,
+          "top5": 0.9866666666666667,
+          "crop_accuracy": 1.0,
+          "accuracy_given_crop": 0.9033333333333333,
+          "mean_confidence": 0.933927595615387,
+          "ece": 0.044023279984792094,
+          "top_confusions": [
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+              58
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Northern_Leaf_Blight",
+              50
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Common_rust",
+              24
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___healthy",
+              8
+            ],
+            [
+              "Corn___Maize_streak_virus",
+              "Corn___Fall_armyworm",
+              2
+            ]
+          ]
+        },
+        "Corn___healthy": {
+          "n": 1500,
+          "accuracy": 0.6973333333333334,
+          "top5": 0.956,
+          "crop_accuracy": 0.9973333333333333,
+          "accuracy_given_crop": 0.698,
+          "mean_confidence": 0.8269770741462708,
+          "ece": 0.129643686513106,
+          "top_confusions": [
+            [
+              "Corn___healthy",
+              "Corn___Common_rust",
+              259
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+              82
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Maize_streak_virus",
+              43
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Leaf_beetle_damage",
+              29
+            ],
+            [
+              "Corn___healthy",
+              "Corn___Northern_Leaf_Blight",
+              24
+            ]
+          ]
+        },
+        "Potato___Early_blight": {
+          "n": 1500,
+          "accuracy": 0.502,
+          "top5": 0.9253333333333333,
+          "crop_accuracy": 0.672,
+          "accuracy_given_crop": 0.8106666666666666,
+          "mean_confidence": 0.738905668258667,
+          "ece": 0.23813291005293527,
+          "top_confusions": [
+            [
+              "Potato___Early_blight",
+              "Potato___Late_blight",
+              169
+            ],
+            [
+              "Potato___Early_blight",
+              "Blueberry___Rust",
+              118
+            ],
+            [
+              "Potato___Early_blight",
+              "Bean___Halo_blight",
+              108
+            ],
+            [
+              "Potato___Early_blight",
+              "Tomato___Bacterial_spot",
+              87
+            ],
+            [
+              "Potato___Early_blight",
+              "Potato___healthy",
+              86
+            ]
+          ]
+        },
+        "Potato___Late_blight": {
+          "n": 1567,
+          "accuracy": 0.33312061263560944,
+          "top5": 0.7715379706445438,
+          "crop_accuracy": 0.7077217613273772,
+          "accuracy_given_crop": 0.43012125079770264,
+          "mean_confidence": 0.720069944858551,
+          "ece": 0.3869493136416595,
+          "top_confusions": [
+            [
+              "Potato___Late_blight",
+              "Potato___Early_blight",
+              571
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Septoria_leaf_spot",
+              116
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Bacterial_spot",
+              58
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Early_blight",
+              46
+            ],
+            [
+              "Potato___Late_blight",
+              "Tomato___Verticillium_wilt",
+              30
+            ]
+          ]
+        },
+        "Potato___healthy": {
+          "n": 1863,
+          "accuracy": 0.74020397208803,
+          "top5": 0.9479334406870639,
+          "crop_accuracy": 0.8733225979602791,
+          "accuracy_given_crop": 0.822866344605475,
+          "mean_confidence": 0.8262789249420166,
+          "ece": 0.09148831785493042,
+          "top_confusions": [
+            [
+              "Potato___healthy",
+              "Potato___Early_blight",
+              180
+            ],
+            [
+              "Potato___healthy",
+              "Potato___Late_blight",
+              68
+            ],
+            [
+              "Potato___healthy",
+              "Soybean___healthy",
+              46
+            ],
+            [
+              "Potato___healthy",
+              "Plum___healthy",
+              28
+            ],
+            [
+              "Potato___healthy",
+              "Blueberry___healthy",
+              27
+            ]
+          ]
+        }
+      },
+      "seconds": 938,
+      "leafprep": true,
+      "gate_share": {
+        "bean_uganda": {
+          "too_small": 495,
+          "cuts_leaf": 193,
+          "ok": 166,
+          "fragmented": 8
+        },
+        "coffee_ecuador": {
+          "ok": 294,
+          "too_small": 301,
+          "cuts_leaf": 247,
+          "fragmented": 23
+        },
+        "maize_tanzania": {
+          "too_small": 2931,
+          "cuts_leaf": 50,
+          "ok": 10,
+          "fills_frame": 9
+        },
+        "potato_ethiopia": {
+          "ok": 146,
+          "too_small": 263,
+          "cuts_leaf": 20,
+          "fragmented": 1
+        },
+        "potato_india": {
+          "cuts_leaf": 845,
+          "too_small": 2527,
+          "ok": 1113,
+          "fragmented": 15
+        }
+      }
+    }
+  }
+}

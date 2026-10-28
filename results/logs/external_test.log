@@ -1,0 +1,31 @@
+[{"stream_name":"stdout","time":66.50999637,"data":"$ /usr/bin/python3 -u external_test.py --train-data /tmp/leafscan_data --models current=/tmp/models/raw preprocessed=/tmp/models/pp --out /kaggle/working\n"}
+,{"stream_name":"stdout","time":1174.208302176,"data":"[potato_india] 4500 usable images (18.3 min)\n"}
+,{"stream_name":"stdout","time":1177.561553388,"data":"[potato_ethiopia] 430 usable images (0.1 min)\n"}
+,{"stream_name":"stdout","time":1547.906285051,"data":"  maize_tanzania: {'MSV': 1500, 'Healthy': 1500}\n"}
+,{"stream_name":"stdout","time":1547.968608328,"data":"[maize_tanzania] 3000 usable images (6.2 min)\n"}
+,{"stream_name":"stdout","time":1556.767916819,"data":"  bean_uganda: {'bean_rust': 436, 'healthy': 427}\n"}
+,{"stream_name":"stdout","time":1556.773287814,"data":"[bean_uganda] 863 usable images (0.1 min)\n"}
+,{"stream_name":"stdout","time":1649.248731604,"data":"[coffee_ecuador] 865 usable images (1.5 min)\n"}
+,{"stream_name":"stdout","time":1649.828278714,"data":"  cassava: competition data not attached\n"}
+,{"stream_name":"stdout","time":1649.829076707,"data":"[cassava_uganda] 0 usable images (0.0 min)\n"}
+,{"stream_name":"stdout","time":1854.473644141,"data":"removed near-duplicates of training images: {'bean_uganda': 1}\n"}
+,{"stream_name":"stdout","time":2070.044537997,"data":"[current] accuracy 0.6649  crop 0.8370  given-crop 0.7747  (215s)\n"}
+,{"stream_name":"stderr","time":2084.089699321,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":2084.316821537,"data":"[transformers] A new version of the following files was downloaded from https://huggingface.co/ZhengPeng7/BiRefNet_lite:\n"}
+,{"stream_name":"stderr","time":2084.316844849,"data":"- BiRefNet_config.py\n"}
+,{"stream_name":"stderr","time":2084.316851168,"data":". Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.\n"}
+,{"stream_name":"stderr","time":2085.619638287,"data":"[transformers] A new version of the following files was downloaded from https://huggingface.co/ZhengPeng7/BiRefNet_lite:\n"}
+,{"stream_name":"stderr","time":2085.619664723,"data":"- birefnet.py\n"}
+,{"stream_name":"stderr","time":2085.619671621,"data":". Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.\n"}
+,{"stream_name":"stderr","time":2088.668957362,"data":"\rLoading weights:   0%|          | 0/586 [00:00\u003c?, ?it/s]\rLoading weights:  45%|████▌     | 266/586 [00:00\u003c00:00, 2658.89it/s]\rLoading weights:  94%|█████████▍| 551/586 [00:00\u003c00:00, 2768.85it/s]\rLoading weights: 100%|██████████| 586/586 [00:00\u003c00:00, 2787.72it/s]\n"}
+,{"stream_name":"stdout","time":3008.609994701,"data":"[preprocessed] accuracy 0.6814  crop 0.8713  given-crop 0.7648  (938s)\n"}
+,{"stream_name":"stdout","time":3009.529072056,"data":"EXTERNAL DONE {\"current\": 0.6649062855959408, \"preprocessed\": 0.6813710261986125} in 48.9 min\n"}
+,{"stream_name":"stdout","time":3013.947060528,"data":"[done in 49.1 min]\n"}
+,{"stream_name":"stdout","time":3013.947106723,"data":"EXTERNAL KERNEL DONE in 50.2 min\n"}
+,{"stream_name":"stderr","time":3015.81829858,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":3015.818339096,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":3016.037887008,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":3016.037925163,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":3016.758311651,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":3017.66621196,"data":"[NbConvertApp] Writing 431844 bytes to __results__.html\n"}
+]
