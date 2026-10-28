@@ -4,6 +4,7 @@ import os
 import sys
 from pathlib import Path
 
+import numpy as np
 import pytest
 from PIL import Image
 
@@ -127,3 +128,37 @@ def test_crop_filter_restricts_diagnosis(client):
     assert body["crop_filter"] == "Tomato"
     assert all(k["key"].startswith("Tomato___") or k["key"] == "Background_without_leaves" for k in body["top_k"])
     assert client.post("/api/predict?crop=Banana2", files={"file": sample("apple_scab")}).status_code == 422
+
+
+def _png(arr):
+    buf = io.BytesIO()
+    Image.fromarray(arr).save(buf, "PNG")
+    return buf.getvalue()
+
+
+def test_flat_green_square_is_not_diagnosed(client):
+    """Review finding: a solid green square was diagnosed as a disease with 61% confidence."""
+    img = _png(np.full((300, 300, 3), (60, 140, 50), np.uint8))
+    body = client.post("/api/predict?save=false", files={"file": ("green.png", img, "image/png")}).json()
+    assert body["status"] == "unusable_photo"
+    assert body["decision_reason"]
+
+
+def test_textured_non_plant_image_is_no_leaf(client):
+    noise = np.random.default_rng(0).integers(0, 255, (300, 300), dtype=np.uint8)
+    img = _png(np.stack([noise] * 3, -1))                      # grey texture, no plant colours
+    body = client.post("/api/predict?save=false", files={"file": ("grey.png", img, "image/png")}).json()
+    assert body["status"] == "no_leaf"
+
+
+def test_wrong_crop_selection_is_flagged(client):
+    """Review finding: a potato leaf with 'Soybean' selected was silently forced into Soybean classes."""
+    body = client.post("/api/predict?save=false&crop=Soybean", files={"file": sample("potato_late_blight")}).json()
+    assert body["status"] == "crop_mismatch"
+    assert body["model_sees"].startswith("Potato") and body["crop_match"] < 0.02
+
+
+def test_correct_crop_selection_still_diagnoses(client):
+    body = client.post("/api/predict?save=false&crop=Potato", files={"file": sample("potato_late_blight")}).json()
+    assert body["status"] == "diseased" and body["disease"]["key"] == "Potato___Late_blight"
+    assert body["decision_reason"] is None

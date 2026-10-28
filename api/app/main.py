@@ -47,6 +47,7 @@ async def lifespan(app: FastAPI):
     state["metrics"] = _read_json("metrics.json")
     state["train"] = _read_json("train_history.json")
     state["dataset"] = _read_json("dataset_stats.json")
+    state["external"] = _read_json("external_metrics.json")
     missing = [c for c in state["predictor"].classes if c not in KNOWLEDGE]
     if missing:
         log.warning("no disease info for: %s", missing)
@@ -97,13 +98,15 @@ def _diagnose(data: bytes, filename: str | None, tta: bool, save: bool, heatmap:
         model_img, prep = state["leafprep"](img)
     if crop and crop not in p.crops():
         raise HTTPException(422, f"Unknown crop '{crop}'. Valid: {', '.join(p.crops())}")
-    r = p.analyze(model_img, tta=tta, with_heatmap=heatmap, crop=crop or None)
+    r = p.analyze(model_img, tta=tta, with_heatmap=heatmap, crop=crop or None,
+                  quality=q if model_img is img else None)
     info = disease(r["class"])
     top_k = [{"key": k["class"], "crop": disease(k["class"])["crop"],
               "name": disease(k["class"])["name"], "probability": k["probability"]} for k in r["top_k"]]
     out = {
         "filename": filename, "status": r["status"], "confidence": r["confidence"],
         "entropy": r["entropy"], "tta": tta, "crop_filter": r["crop_filter"], "disease": info, "top_k": top_k,
+        "decision_reason": r["decision_reason"], "crop_match": r["crop_match"], "model_sees": r["model_sees"],
         "quality": q.__dict__, "heatmap": r.get("heatmap"),
         "preprocessing": ({**prep, "image": LeafPreprocessor.preview(model_img)} if prep else None),
         "inference_ms": round((time.perf_counter() - t) * 1000, 1),
@@ -148,6 +151,7 @@ def model_info():
         "metrics": state["metrics"],
         "training": state["train"],
         "dataset_stats": state["dataset"],
+        "external": state.get("external"),
     }
 
 
@@ -193,7 +197,8 @@ async def predict_batch(files: list[UploadFile] = File(...), tta: bool = False, 
                         crop: str | None = None):
     if len(files) > settings.max_batch:
         raise HTTPException(413, f"At most {settings.max_batch} images per batch")
-    items, summary = [], {"healthy": 0, "diseased": 0, "uncertain": 0, "no_leaf": 0, "error": 0}
+    items, summary = [], {k: 0 for k in ("healthy", "diseased", "uncertain", "no_leaf", "unusable_photo",
+                                          "crop_mismatch", "error")}
     for f in files:
         try:
             data = await _read_upload(f)

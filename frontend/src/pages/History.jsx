@@ -4,7 +4,7 @@ import { api, pct } from '../api';
 import ProbBars from '../components/ProbBars';
 import StatusBadge from '../components/StatusBadge';
 
-const FILTERS = [['', 'All'], ['diseased', 'Diseased'], ['healthy', 'Healthy'], ['uncertain', 'Uncertain'], ['no_leaf', 'No leaf']];
+const FILTERS = [['', 'All'], ['diseased', 'Diseased'], ['healthy', 'Healthy'], ['uncertain', 'Uncertain'], ['no_leaf', 'No leaf'], ['unusable_photo', 'Retake'], ['crop_mismatch', 'Crop mismatch']];
 const PAGE = 25;
 
 export default function History() {
@@ -54,7 +54,8 @@ export default function History() {
             <div className="stat"><div className="k">Disease detected</div><div className="v">{bs.diseased || 0}</div>
               <div className="s">{stats.total ? pct((bs.diseased || 0) / stats.total, 0) : '0%'} of scans</div></div>
             <div className="stat"><div className="k">Healthy</div><div className="v">{bs.healthy || 0}</div></div>
-            <div className="stat"><div className="k">Uncertain / no leaf</div><div className="v">{(bs.uncertain || 0) + (bs.no_leaf || 0)}</div></div>
+            <div className="stat"><div className="k">No diagnosis given</div><div className="v">{(bs.uncertain || 0) + (bs.no_leaf || 0) + (bs.unusable_photo || 0) + (bs.crop_mismatch || 0)}</div>
+              <div className="s">uncertain, no leaf, retake, crop mismatch</div></div>
           </div>
           <div className="card">
             <div className="card-title"><h3>Most frequent findings</h3><span className="sub">scans</span></div>

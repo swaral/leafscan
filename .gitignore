@@ -1,6 +1,6 @@
 # data & caches (re-create with ml/prepare_data.py)
-data/
-data_raw/
+/data/
+/data_raw/
 ml/artifacts/*.pt
 ml/train.log
 api/data/

@@ -13,7 +13,19 @@ from PIL import Image, ImageOps, UnidentifiedImageError
 
 IMG_SIZE = 224
 BACKGROUND = "Background_without_leaves"
-UNCERTAIN_BELOW = 0.55
+
+# Decision thresholds. Defaults are conservative and were checked on real leaves vs flat/blank
+# images; a thresholds.json next to the model (e.g. fitted on field validation data) overrides them.
+DEFAULT_THRESHOLDS = {
+    "min_side": 64,                  # px; smaller photos cannot be diagnosed
+    "min_brightness": 20,            # mean grey level 0..255
+    "max_brightness": 245,
+    "min_sharpness": 3.0,            # variance of Laplacian; flat colour = 0, smoothest real leaf ~17
+    "min_plant_fraction": 0.05,      # share of plant-coloured pixels; real leaves 0.25-0.7
+    "uncertain_below": 0.55,         # calibrated confidence needed for a diagnosis
+    "uncertain_below_with_crop": 0.55,
+    "crop_mismatch_below": 0.02,     # probability mass on the chosen crop (before filtering)
+}
 
 
 class InvalidImageError(ValueError):
@@ -56,6 +68,9 @@ class Predictor:
         self.classes: list[str] = json.loads((model_dir / "labels.json").read_text())
         head = np.load(model_dir / "cam_head.npz")
         self.cam_weight = head["weight"]  # (C, 960)
+        self.thresholds = dict(DEFAULT_THRESHOLDS)
+        if (model_dir / "thresholds.json").exists():
+            self.thresholds.update(json.loads((model_dir / "thresholds.json").read_text()))
 
     # ---------- image handling ----------
     @staticmethod
@@ -80,9 +95,12 @@ class Predictor:
         g.thumbnail((512, 512))
         a = np.asarray(g, dtype=np.float32)
         brightness = float(a.mean())
-        # Variance of the Laplacian: low values mean few sharp edges (blur).
-        lap = (-4 * a[1:-1, 1:-1] + a[:-2, 1:-1] + a[2:, 1:-1] + a[1:-1, :-2] + a[1:-1, 2:])
-        sharpness = float(lap.var())
+        # Variance of the Laplacian: low values mean few sharp edges (blur). Tiny images: 0.
+        if min(a.shape) < 3:
+            sharpness = 0.0
+        else:
+            lap = (-4 * a[1:-1, 1:-1] + a[:-2, 1:-1] + a[2:, 1:-1] + a[1:-1, :-2] + a[1:-1, 2:])
+            sharpness = float(lap.var())
         warnings = []
         if min(w, h) < 128:
             warnings.append("Low resolution: use a photo at least 256 px on the short side.")
@@ -105,16 +123,43 @@ class Predictor:
     def crops(self) -> list[str]:
         return sorted({c.split("___")[0] for c in self.classes if c != BACKGROUND})
 
+    @staticmethod
+    def plant_fraction(img: Image.Image) -> float:
+        """Share of plant-coloured pixels (green through yellow/brown), on a small thumbnail."""
+        t = img.copy()
+        t.thumbnail((256, 256))
+        hsv = np.asarray(t.convert("HSV"), dtype=np.float32)
+        h, s, v = hsv[..., 0] * 360 / 255, hsv[..., 1] / 255, hsv[..., 2] / 255
+        return float(((h >= 15) & (h <= 170) & (s >= 0.18) & (v >= 0.12)).mean())
+
+    def photo_problem(self, q: "Quality") -> str | None:
+        """Reason the photo cannot be diagnosed at all, or None."""
+        th = self.thresholds
+        if min(q.width, q.height) < th["min_side"]:
+            return "The photo is too small to diagnose. Use a photo at least 256 px on the short side."
+        if q.brightness < th["min_brightness"]:
+            return "The photo is too dark to diagnose. Retake it in brighter, even light."
+        if q.brightness > th["max_brightness"]:
+            return "The photo is overexposed. Retake it without direct glare."
+        if q.sharpness < th["min_sharpness"]:
+            return "The photo shows no leaf detail (blank, flat or extremely blurred). Retake it in focus."
+        return None
+
     def analyze(self, img: Image.Image, tta: bool = False, top_k: int = 5,
-                with_heatmap: bool = True, crop: str | None = None) -> dict:
+                with_heatmap: bool = True, crop: str | None = None, quality: "Quality | None" = None) -> dict:
         x = self.preprocess(img)
         views = [x]
         if tta:  # horizontal flip, vertical flip, 90-degree rotation
             views += [x[:, :, ::-1], x[:, ::-1, :], np.rot90(x, 1, axes=(1, 2))]
         logits, feats = self._run(np.ascontiguousarray(np.stack(views)))
         probs = _softmax(logits).mean(axis=0)
+        th = self.thresholds
+        unfiltered_best = int(probs.argmax())
+        crop_mass = None
         if crop:  # user told us the crop: only its diseases (and "no leaf") are possible
-            allowed = np.array([c.split("___")[0] == crop or c == BACKGROUND for c in self.classes])
+            in_crop = np.array([c.split("___")[0] == crop for c in self.classes])
+            crop_mass = float(probs[in_crop].sum())
+            allowed = in_crop | np.array([c == BACKGROUND for c in self.classes])
             if allowed.sum() > 1:
                 probs = np.where(allowed, probs, 0.0)
                 probs = probs / probs.sum()
@@ -127,10 +172,22 @@ class Predictor:
         entropy = float(-(probs * np.log(probs + 1e-12)).sum() / np.log(len(probs)))
         key = self.classes[best]
 
-        if key == BACKGROUND:
-            status = "no_leaf"
-        elif confidence < UNCERTAIN_BELOW:
-            status = "uncertain"
+        # Decision, most fundamental problem first. Only "healthy"/"diseased" are diagnoses.
+        q = quality or self.quality(img)
+        problem = self.photo_problem(q)
+        reason = None
+        if problem:
+            status, reason = "unusable_photo", problem
+        elif (self.classes[unfiltered_best] == BACKGROUND
+              or self.plant_fraction(img) < th["min_plant_fraction"]):
+            status, reason = "no_leaf", "No plant leaf was recognised in the photo."
+        elif crop and crop_mass is not None and (crop_mass < th["crop_mismatch_below"] or key == BACKGROUND):
+            seen = self.classes[unfiltered_best].split("___")[0]
+            status = "crop_mismatch"
+            reason = (f"This photo does not look like {crop}: the model sees {seen} instead. "
+                      f"Check the selected crop, or choose auto-detect.")
+        elif confidence < (th["uncertain_below_with_crop"] if crop else th["uncertain_below"]):
+            status, reason = "uncertain", "The model is not confident enough to give a diagnosis."
         elif key.endswith("healthy"):
             status = "healthy"
         else:
@@ -143,6 +200,9 @@ class Predictor:
             "entropy": round(entropy, 4),
             "tta": tta,
             "crop_filter": crop,
+            "decision_reason": reason,
+            "crop_match": None if crop_mass is None else round(crop_mass, 4),
+            "model_sees": self.classes[unfiltered_best] if crop else None,
             "top_k": [{"class": self.classes[i], "probability": float(probs[i])}
                       for i in order[:top_k]],
         }

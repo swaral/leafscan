@@ -1,9 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Activity, BarChart3, Cpu, Database, Grid3x3, Shuffle } from 'lucide-react';
+import { Activity, BarChart3, Cpu, Database, Globe, Grid3x3, Shuffle } from 'lucide-react';
 import { api, pct } from '../api';
 import ConfusionMatrix from '../components/ConfusionMatrix';
 import LineChart from '../components/LineChart';
 import ProbBars from '../components/ProbBars';
+
+const EXT_NAMES = {
+  potato_india: 'Potato · India (PLDD-UP)', potato_ethiopia: 'Potato · Ethiopia', maize_tanzania: 'Maize · Tanzania',
+  bean_uganda: 'Bean · Uganda (iBean)', coffee_ecuador: 'Coffee · Ecuador (RoCoLe)', cassava_uganda: 'Cassava · Uganda',
+};
 
 const SOURCE_NAMES = {
   plantvillage: 'PlantVillage', plantdoc: 'PlantDoc', plantwild: 'PlantWild',
@@ -33,6 +38,7 @@ export default function ModelPage() {
   };
 
   const m = info?.metrics;
+  const ext = info?.external;
   const t = info?.training;
 
   const confused = useMemo(() => {
@@ -69,7 +75,7 @@ export default function ModelPage() {
 
       <div className="stack" style={{ gap: 20 }}>
         <div className="stat-row">
-          <div className="stat hero"><div className="k">Test accuracy</div><div className="v">{pct(m.accuracy, 2)}</div><div className="s">{m.classes.length} classes</div></div>
+          <div className="stat hero"><div className="k">Internal test accuracy</div><div className="v">{pct(m.accuracy, 2)}</div><div className="s">{m.classes.length} classes · same sources as training</div></div>
           <div className="stat"><div className="k">Macro F1</div><div className="v">{m.macro_f1.toFixed(3)}</div><div className="s">class-balanced</div></div>
           <div className="stat"><div className="k">Top-3 accuracy</div><div className="v">{pct(m.top3_accuracy, 2)}</div></div>
           <div className="stat"><div className="k">Calibration error</div><div className="v">{pct(m.ece, 2)}</div>
@@ -77,6 +83,32 @@ export default function ModelPage() {
           <div className="stat"><div className="k">CPU latency</div><div className="v">{m.latency_ms_p50.toFixed(0)} ms</div>
             <div className="s">p50 · {m.model_size_mb.toFixed(1)} MB model</div></div>
         </div>
+
+        {ext && (
+          <div className="card">
+            <div className="card-title"><Globe size={16} /><h3>Accuracy on unseen field datasets</h3>
+              <span className="sub">{ext.images.toLocaleString()} photos never used in training</span></div>
+            <div className="stat-row" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', marginBottom: 14 }}>
+              <div className="stat"><div className="k">Exact disease</div><div className="v">{pct(ext.overall.accuracy, 1)}</div></div>
+              <div className="stat"><div className="k">With crop selected</div><div className="v">{pct(ext.overall.accuracy_given_crop, 1)}</div></div>
+              <div className="stat"><div className="k">Correct crop</div><div className="v">{pct(ext.overall.crop_accuracy, 1)}</div></div>
+              <div className="stat"><div className="k">Avg. confidence</div><div className="v">{pct(ext.overall.mean_confidence, 0)}</div>
+                <div className="s">overconfident on new data</div></div>
+            </div>
+            <div className="table-wrap">
+              <table>
+                <thead><tr><th>Dataset</th><th className="num">Photos</th><th className="num">Accuracy</th><th className="num">Crop selected</th></tr></thead>
+                <tbody>
+                  {Object.entries(ext.per_dataset).sort((a, b) => b[1].accuracy - a[1].accuracy).map(([k, v]) => (
+                    <tr key={k}><td>{EXT_NAMES[k] || k}</td><td className="num">{v.n.toLocaleString()}</td>
+                      <td className="num">{pct(v.accuracy, 1)}</td><td className="num">{pct(v.accuracy_given_crop, 1)}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 8 }}>{ext.scope}</p>
+          </div>
+        )}
 
         <div className="grid-2" style={{ gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)' }}>
           {t && (

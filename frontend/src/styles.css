@@ -211,6 +211,8 @@ input[type='range'] { accent-color: var(--brand); }
 .badge.diseased svg { color: var(--critical); }
 .badge.uncertain svg { color: var(--warning); }
 .badge.no_leaf svg { color: var(--muted); }
+.badge.unusable_photo svg { color: var(--serious); }
+.badge.crop_mismatch svg { color: var(--warning); }
 .badge svg { width: 14px; height: 14px; }
 
 .chips { display: flex; gap: 6px; flex-wrap: wrap; }

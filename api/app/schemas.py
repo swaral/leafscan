@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-Status = Literal["healthy", "diseased", "uncertain", "no_leaf"]
+Status = Literal["healthy", "diseased", "uncertain", "no_leaf", "unusable_photo", "crop_mismatch"]
 
 
 class DiseaseInfo(BaseModel):
@@ -43,6 +43,9 @@ class Prediction(BaseModel):
     entropy: float
     tta: bool
     crop_filter: str | None = None
+    decision_reason: str | None = Field(None, description="Why no diagnosis was given (non-diagnosis states)")
+    crop_match: float | None = Field(None, description="Probability mass on the selected crop before filtering")
+    model_sees: str | None = Field(None, description="Top class without the crop filter (when a crop was chosen)")
     disease: DiseaseInfo
     top_k: list[TopK]
     quality: QualityReport
