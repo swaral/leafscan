@@ -1,0 +1,25 @@
+# data & caches (re-create with ml/prepare_data.py)
+data/
+data_raw/
+ml/artifacts/*.pt
+ml/train.log
+api/data/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# frontend
+frontend/node_modules/
+frontend/dist/
+
+.DS_Store
+.env
+
+# generated / local-only
+ml/train_run1.log
+ml/scratch/kaggle/
+ml/scratch/smoke*/
+*.tar
+*.partial.npy

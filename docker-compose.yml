@@ -1,0 +1,14 @@
+services:
+  leafscan:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MAX_UPLOAD_MB=10
+      - WORKERS=1
+    volumes:
+      - leafscan-data:/data
+    restart: unless-stopped
+
+volumes:
+  leafscan-data:

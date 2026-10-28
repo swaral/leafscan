@@ -1,0 +1,7 @@
+# Needed only when the installed model was trained on leaf-preprocessed data (pp_config.json present).
+# CPU wheels: pip install -r requirements-leafprep.txt --extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.2
+transformers>=4.40
+timm>=1.0
+kornia>=0.7
+einops>=0.7

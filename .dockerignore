@@ -1,0 +1,8 @@
+data
+data_raw
+ml
+frontend/node_modules
+frontend/dist
+api/data
+**/__pycache__
+**/.pytest_cache

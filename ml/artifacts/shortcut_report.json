@@ -1,0 +1,40 @@
+{
+  "n_test_no_background": 5430,
+  "n_usable_masks": 5259,
+  "chance": {
+    "uniform_38": 0.02631578947368421,
+    "majority_class": 0.10477277048868607
+  },
+  "A_original": {
+    "accuracy": 0.9960068454078722,
+    "crop_accuracy": 1.0,
+    "predicted_background_class": 0.0
+  },
+  "B_leaf_only_grey_bg": {
+    "accuracy": 0.9199467579387717,
+    "crop_accuracy": 0.9676744628256323,
+    "predicted_background_class": 0.0034227039361095267
+  },
+  "C_background_only": {
+    "accuracy": 0.08005324206122837,
+    "crop_accuracy": 0.1026811180832858,
+    "predicted_background_class": 0.6858718387526146
+  },
+  "D_background_swap": {
+    "follows_leaf": 0.8636622932116372,
+    "follows_background": 0.009887811370983077,
+    "leaf_crop_kept": 0.9490397413957026,
+    "background_crop": 0.013310515307092603
+  },
+  "E_corners_only_gbm": {
+    "accuracy": 0.623756906077348,
+    "features": "mean+std RGB of the four 8x8 corner patches (24 numbers)",
+    "majority_baseline": 0.10147329650092081,
+    "crop_accuracy": 0.7011049723756906
+  },
+  "F_cam_mass_on_leaf": {
+    "mean": 0.7455648183822632,
+    "median": 0.7752224802970886,
+    "leaf_area_share_mean": 0.4393233745173824
+  }
+}
