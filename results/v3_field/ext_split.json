@@ -1,0 +1,17 @@
+{
+  "potato_india": {
+    "train": 2471,
+    "val": 677,
+    "ext_test": 1352
+  },
+  "maize_tanzania": {
+    "ext_test": 900,
+    "train": 1650,
+    "val": 450
+  },
+  "coffee_ecuador": {
+    "train": 476,
+    "ext_test": 260,
+    "val": 129
+  }
+}

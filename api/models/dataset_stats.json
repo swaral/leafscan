@@ -50,8 +50,8 @@
     "test": 153
   },
   "Corn___healthy": {
-    "train": 1218,
-    "val": 152,
+    "train": 2043,
+    "val": 377,
     "test": 152
   },
   "Corn___Northern_Leaf_Blight": {
@@ -105,18 +105,18 @@
     "test": 177
   },
   "Potato___Early_blight": {
-    "train": 1040,
-    "val": 131,
+    "train": 1864,
+    "val": 357,
     "test": 130
   },
   "Potato___healthy": {
-    "train": 320,
-    "val": 40,
+    "train": 1141,
+    "val": 266,
     "test": 40
   },
   "Potato___Late_blight": {
-    "train": 1049,
-    "val": 132,
+    "train": 1875,
+    "val": 357,
     "test": 131
   },
   "Raspberry___healthy": {
@@ -275,13 +275,13 @@
     "test": 52
   },
   "Coffee___Leaf_rust": {
-    "train": 148,
-    "val": 19,
+    "train": 347,
+    "val": 74,
     "test": 19
   },
   "Coffee___healthy": {
-    "train": 109,
-    "val": 14,
+    "train": 386,
+    "val": 88,
     "test": 14
   },
   "Cucumber___Angular_leaf_spot": {
@@ -460,8 +460,8 @@
     "test": 93
   },
   "Corn___Maize_streak_virus": {
-    "train": 748,
-    "val": 93,
+    "train": 1573,
+    "val": 318,
     "test": 93
   },
   "Tomato___Verticillium_wilt": {

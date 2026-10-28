@@ -6,11 +6,12 @@ latest experiments.
 | Folder | Contents |
 |---|---|
 | `v1_mobilenet/` | v1 model metrics and training history (PlantVillage only) |
-| `v2_vit/` | **Current model in the app**: metrics, training history, class list |
+| `v3_field/` | **Current model in the app** (v2 + field photos): metrics, thresholds, external comparison, log |
+| `v2_vit/` | Previous app model: metrics, training history, class list |
 | `v2_vit_preprocessed/` | Preprocessed-model results, transcribed from the Kaggle logs (its files are on Kaggle) |
 | `audits/` | Leakage check and shortcut (background) audit, with images |
 | `segmentation/` | Background-removal model comparison, safety-gate test, heatmap fix |
-| `external_test/` | Test on 5 unseen field datasets: JSON results and sample predictions |
+| `external_test/` | Test on 5 unseen field datasets: JSON results and sample predictions; `v2_tta_ensemble/` adds TTA and ensemble |
 | `logs/` | Raw logs of the Kaggle runs |
 
 ---
@@ -56,7 +57,8 @@ The original project ([modakverma-dev/plant-disease-classification](https://gith
 | Model | Test images | Accuracy | Macro-F1 | Lab photos | **Field photos** | Calibration error |
 |---|---|---|---|---|---|---|
 | v1 MobileNetV3 (PlantVillage only, 39 classes) | 5,544 | 99.60% | 0.994 | 99.60% | n/a | 0.20% |
-| **v2 ViT (current app model, 95 classes)** | 10,598 | **95.63%** | **0.910** | **99.73%** | **91.14%** | 1.39% |
+| v2 ViT (95 classes) | 10,598 | 95.63% | 0.910 | 99.73% | 91.14% | 1.39% |
+| **v3 ViT + field photos (current app model)** | 10,598 | **95.67%** | **0.910** | **99.75%** | **91.20%** | **1.24%** |
 | v2 ViT + background removal and colour normalisation | 10,598 | 95.39% | 0.905 | 99.49% | 90.88% | 1.51% |
 
 v2 per dataset:
@@ -90,7 +92,7 @@ Only 1 image duplicated a training image and was removed.
 | Coffee, Ecuador (865) | 77.9% | **87.6%** |
 | Potato, India (4,500) | 43.4% | **49.6%** |
 
-**The honest real-world accuracy is about 66–68%, or 77.5% when the user selects the crop.** The weakest case is late blight on dried leaves in the Indian potato photos.
+**For v2, the honest real-world accuracy was about 66–68%, or 77.5% when the user selected the crop (see 3.6 for v3).** The weakest case is late blight on dried leaves in the Indian potato photos.
 
 ### 3.3 Background removal and colour normalisation experiment
 - **Segmenter:** BiRefNet-lite was the best of 4 models. It takes 45 ms per image on GPU and 5.4 s on CPU.
@@ -105,7 +107,48 @@ Only 1 image duplicated a training image and was removed.
 | First 6 blocks frozen | 131.9 |
 | 336 px, full | 42.1 |
 
+### 3.5 TTA and ensemble on the external test (v2 models, 9,657 photos)
+| Setup | Exact disease | Crop known | Calibration error |
+|---|---|---|---|
+| v2 ViT | 66.5% | 77.5% | 0.159 |
+| v2 ViT + TTA | 67.1% | 77.9% | 0.132 |
+| v2 preprocessed + TTA | 69.2% | 77.2% | 0.110 |
+| Ensemble of both + TTA | 69.3% | 78.4% | 0.086 |
+
+A small gain for 8x the compute, so it was not adopted; adding field data (3.6) helped far more.
+
+### 3.6 v3: fine-tuned further on real field photos (current app model)
+**What changed:** the v2 model was trained for 4 more epochs (learning rate 5e-5, about 1 hour on 2× T4).
+Field photos from 3 of the external datasets were added to training and sampled 3x as often:
+- Potato India: 2,471 train / 677 val / 1,352 held out
+- Maize Tanzania: 1,650 / 450 / 900
+- Coffee Ecuador: 476 / 129 / 260
+
+Near-duplicates were kept on one side of the split.
+**Potato Ethiopia and Beans Uganda were left out completely** to measure true new-farm performance.
+
+**Field thresholds:** the "uncertain" cut-off is now fitted on the 6,315 field validation photos so
+that accepted diagnoses are ≥95% correct: 0.77 without a crop (93% of photos accepted), 0.53 with the
+crop selected (99% accepted). Written to `api/models/thresholds.json`, read by the app.
+
+| Test photos (none used for training or validation) | v2 (previous) | **v3 (current)** |
+|---|---|---|
+| Potato, Ethiopia (430), **never seen** | 97.0% | **98.1%** |
+| Bean, Uganda (862), **never seen** | 93.5% | **94.8%** |
+| Potato, India: held-out 30% (1,352) | 44.3% | **89.8%** |
+| Maize, Tanzania: held-out 30% (900) | 85.2% | **99.1%** |
+| Coffee, Ecuador: held-out 30% (260) | 78.1% | **96.9%** |
+| **All 3,804 photos** | 73.4% | **94.6%** |
+| Calibration error (ECE) | 0.113 | **0.012** |
+| Internal test (10,598) | 95.63% | **95.67%** (no regression) |
+
+**How to read this:** the held-out India, Tanzania and Ecuador photos come from the same regions and
+cameras as the photos added to training, so they show what happens **after local field data is
+collected** (India potato: 44% → 90%). The two never-seen datasets show the gain on a brand-new
+farm: small (+1.1 and +1.3 points), and with no regression. The fix for a weak region is to collect
+labelled field photos from it. Scope is still 9 classes in 4 crops; PlantDoc (77%) and PlantWild
+(82%) remain the weakest internal sources.
+
 ## 4. Still pending
-- **External test with test-time augmentation and an ensemble** (pushed 21 Oct): results are on Kaggle, and need a new Kaggle API token to fetch.
 - **Cassava (Uganda) external dataset:** needs the Kaggle competition rules accepted.
-- **Next improvement:** add more field data for the weak crops (potato), keeping 2–3 datasets held out for honest external testing.
+- **Next improvement:** the same field-data recipe for the weakest internal sources (PlantDoc, PlantWild), and a new never-seen dataset per crop to keep testing honest.

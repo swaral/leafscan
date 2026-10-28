@@ -123,9 +123,10 @@ export default function ResultCard({ r }) {
         {r.id && <span>History #{r.id}</span>}
       </div>
       <p style={{ color: 'var(--muted)', fontSize: '0.78rem' }}>
-        AI-assisted guidance only. On new farms and cameras the model is right about 2 out of 3 times
-        (about 3 in 4 when the crop is selected). Confirm serious diagnoses with a local agricultural
-        extension officer and follow product label instructions.
+        AI-assisted guidance only. In tests on field photos outside its training data the model was right
+        about 9 times in 10, but it was only tested on a few crops and can be wrong on unfamiliar farms.
+        Confirm serious diagnoses with a local agricultural extension officer and follow product label
+        instructions.
       </p>
     </div>
   );

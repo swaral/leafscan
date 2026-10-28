@@ -14,21 +14,23 @@ Three independent modules:
 
 ---
 
-## Results: current model (v2)
+## Results: current model (v3)
 
-**DINOv2 ViT-B/14 (with registers), pretrained by Pl@ntNet on PlantCLEF 2024 (about 1.4M plant photos), fine-tuned on 5 combined datasets.** Evaluated on **10,598 held-out test images** (never used for training, epoch selection or calibration), using the same preprocessing as the API.
+**DINOv2 ViT-B/14 (with registers), pretrained by Pl@ntNet on PlantCLEF 2024 (about 1.4M plant photos), fine-tuned on 5 combined datasets, then further on real field photos from India, Tanzania and Ecuador.** Evaluated on **10,598 held-out test images** (never used for training, epoch selection or calibration), using the same preprocessing as the API.
 
 | Test set | Images | Accuracy | Macro-F1 |
 |---|---|---|---|
-| **All** | 10,598 | **95.63 %** | 0.910 |
-| Lab photos (PlantVillage) | 5,542 | 99.73 % | 0.997 |
-| **Field / real-world photos** | 5,056 | **91.14 %** | 0.854 |
-| └ Plant Pathology 2021 (apple orchards) | 1,567 | 98.60 % | 0.986 |
-| └ CCMT (Ghana farms) | 1,600 | 95.25 % | 0.951 |
-| └ PlantWild (in-the-wild web photos) | 1,645 | 82.31 % | 0.812 |
-| └ PlantDoc (web photos) | 244 | 75.82 % | 0.786 |
+| **All** | 10,598 | **95.67 %** | 0.910 |
+| Lab photos (PlantVillage) | 5,542 | 99.75 % | 0.997 |
+| **Field / real-world photos** | 5,056 | **91.20 %** | 0.853 |
+| └ Plant Pathology 2021 (apple orchards) | 1,567 | 98.47 % | 0.985 |
+| └ CCMT (Ghana farms) | 1,600 | 95.37 % | 0.954 |
+| └ PlantWild (in-the-wild web photos) | 1,645 | 82.37 % | 0.811 |
+| └ PlantDoc (web photos) | 244 | 76.64 % | 0.789 |
 
-Top-5 accuracy 99.38 %, calibration error (ECE) 1.39 % after temperature scaling (T = 0.75). The model is 343 MB (ONNX) and takes about 240–335 ms per image on CPU.
+**Outside the training sources** (3,804 field photos from 5 independent datasets, none used for training or validation): **94.6 %** exact disease (previous model 73.4 %). Two of these datasets (potato from Ethiopia, beans from Uganda) were never seen at all: 98.1 % and 94.8 %. The others are held-out photos from datasets partly added to training, e.g. Indian potato went from 44 % to 90 %. Details in [`results/README.md`](results/README.md).
+
+Top-5 accuracy 99.41 %, calibration error (ECE) 1.24 % after temperature scaling (T = 0.75). The "uncertain" cut-off is fitted on field validation photos (`api/models/thresholds.json`). The model is 343 MB (ONNX) and takes about 240–335 ms per image on CPU.
 
 The weakest classes are small, single-source PlantWild classes (for example apple mosaic virus, F1 0.57, and bean halo blight, F1 0.58), each with only about 100–250 web images.
 

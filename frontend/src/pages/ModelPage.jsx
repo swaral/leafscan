@@ -86,22 +86,27 @@ export default function ModelPage() {
 
         {ext && (
           <div className="card">
-            <div className="card-title"><Globe size={16} /><h3>Accuracy on unseen field datasets</h3>
-              <span className="sub">{ext.images.toLocaleString()} photos never used in training</span></div>
+            <div className="card-title"><Globe size={16} /><h3>Accuracy on field photos outside training</h3>
+              <span className="sub">{ext.images.toLocaleString()} photos not used for training</span></div>
             <div className="stat-row" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', marginBottom: 14 }}>
-              <div className="stat"><div className="k">Exact disease</div><div className="v">{pct(ext.overall.accuracy, 1)}</div></div>
+              <div className="stat"><div className="k">Exact disease</div><div className="v">{pct(ext.overall.accuracy, 1)}</div>
+                {ext.previous_overall_accuracy != null && <div className="s">previous model {pct(ext.previous_overall_accuracy, 1)}</div>}</div>
               <div className="stat"><div className="k">With crop selected</div><div className="v">{pct(ext.overall.accuracy_given_crop, 1)}</div></div>
               <div className="stat"><div className="k">Correct crop</div><div className="v">{pct(ext.overall.crop_accuracy, 1)}</div></div>
               <div className="stat"><div className="k">Avg. confidence</div><div className="v">{pct(ext.overall.mean_confidence, 0)}</div>
-                <div className="s">overconfident on new data</div></div>
+                <div className="s">{ext.overall.mean_confidence - ext.overall.accuracy > 0.05 ? 'overconfident on new data' : 'matches accuracy (calibrated)'}</div></div>
             </div>
             <div className="table-wrap">
               <table>
-                <thead><tr><th>Dataset</th><th className="num">Photos</th><th className="num">Accuracy</th><th className="num">Crop selected</th></tr></thead>
+                <thead><tr><th>Dataset</th><th className="num">Photos</th><th className="num">Accuracy</th><th className="num">Crop selected</th><th className="num">Previous model</th></tr></thead>
                 <tbody>
                   {Object.entries(ext.per_dataset).sort((a, b) => b[1].accuracy - a[1].accuracy).map(([k, v]) => (
-                    <tr key={k}><td>{EXT_NAMES[k] || k}</td><td className="num">{v.n.toLocaleString()}</td>
-                      <td className="num">{pct(v.accuracy, 1)}</td><td className="num">{pct(v.accuracy_given_crop, 1)}</td></tr>
+                    <tr key={k}><td>{EXT_NAMES[k] || k}
+                      {v.unseen_dataset != null && <div style={{ color: 'var(--muted)', fontSize: '0.78rem' }}>
+                        {v.unseen_dataset ? 'never seen in training' : 'held-out 30% of a training dataset'}</div>}</td>
+                      <td className="num">{v.n.toLocaleString()}</td>
+                      <td className="num">{pct(v.accuracy, 1)}</td><td className="num">{pct(v.accuracy_given_crop, 1)}</td>
+                      <td className="num">{v.previous_accuracy != null ? pct(v.previous_accuracy, 1) : '–'}</td></tr>
                   ))}
                 </tbody>
               </table>

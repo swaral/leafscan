@@ -1,0 +1,81 @@
+{
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.2697965000625326,
+      "train_acc": 0.8820290114613181,
+      "val_loss": 0.2533012926578522,
+      "val_acc": 0.9528548717498779,
+      "val_macro_f1": 0.9098489570692933,
+      "val_acc_lab": 0.9971129298210144,
+      "val_acc_field": 0.9140142798423767,
+      "seconds": 864.4
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.2214604726322742,
+      "train_acc": 0.9095182664756447,
+      "val_loss": 0.24814803898334503,
+      "val_acc": 0.9552163481712341,
+      "val_macro_f1": 0.9088648669279125,
+      "val_acc_lab": 0.9978347420692444,
+      "val_acc_field": 0.9178147315979004,
+      "seconds": 864.2
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.2410675208684707,
+      "train_acc": 0.8967921740687679,
+      "val_loss": 0.24864259362220764,
+      "val_acc": 0.9553850293159485,
+      "val_macro_f1": 0.9081001455613655,
+      "val_acc_lab": 0.9978347420692444,
+      "val_acc_field": 0.918131411075592,
+      "seconds": 858.9
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.236850940224776,
+      "train_acc": 0.8942850107449857,
+      "val_loss": 0.24716177582740784,
+      "val_acc": 0.9562283754348755,
+      "val_macro_f1": 0.9121416274823908,
+      "val_acc_lab": 0.9974738359451294,
+      "val_acc_field": 0.9200316667556763,
+      "seconds": 858.7
+    }
+  ],
+  "best_val_macro_f1": 0.9121416274823908,
+  "temperature": 0.7494442462921143,
+  "val_ece_before": 0.08242831792453997,
+  "val_ece_after": 0.010976451793207196,
+  "config": {
+    "data": "/tmp/leafscan_data",
+    "out": "/kaggle/working/run",
+    "arch": "plantclef_vitb14",
+    "epochs": 4,
+    "batch": 128,
+    "lr": 5e-05,
+    "wd": 0.05,
+    "warmup": 0.3,
+    "img": 224,
+    "smoothing": 0.1,
+    "mixup": 0.8,
+    "cutmix": 1.0,
+    "mix_prob": 0.5,
+    "ema": 0.999,
+    "field_boost": 1.5,
+    "workers": 4,
+    "max_steps_per_epoch": 0,
+    "no_pretrained": true,
+    "checkpoint": null,
+    "layer_decay": 0.75,
+    "degrade": 0.5,
+    "freeze_blocks": 4,
+    "init": "/tmp/models/current/best.pt",
+    "ext_boost": 3.0,
+    "backbone": "DINOv2 ViT-B/14 + registers, PlantCLEF 2024 pretrained (Pl@ntNet), fine-tuned",
+    "params_millions": 85.8,
+    "label_smoothing": 0.1
+  }
+}

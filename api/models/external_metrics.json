@@ -1,45 +1,56 @@
 {
-  "description": "Accuracy on 5 independent field datasets never used in training (near-duplicates of training images removed).",
-  "scope": "9 classes across 4 crops (Potato, Corn, Bean, Coffee); not all 95 model classes. Pooled score is dominated by the 4,500 India potato photos.",
-  "images": 9657,
+  "description": "Accuracy on field photos from 5 independent datasets that were not used for training or validation (near-duplicates of training images removed).",
+  "scope": "Potato Ethiopia and Beans Uganda were never seen in training. For Potato India, Maize Tanzania and Coffee Ecuador, 70% of the photos were added to training and the other 30% (shown here) were kept out; those come from the same regions and cameras, so they are easier than a brand-new farm. 9 classes across 4 crops, not all 95 model classes.",
+  "images": 3804,
   "overall": {
-    "accuracy": 0.6649062855959408,
-    "crop_accuracy": 0.8370094232163198,
-    "accuracy_given_crop": 0.774671222947085,
-    "top5": 0.9279279279279279,
-    "mean_confidence": 0.8238962292671204,
-    "ece": 0.1590386091770933
+    "accuracy": 0.945583596214511,
+    "crop_accuracy": 0.9968454258675079,
+    "accuracy_given_crop": 0.9487381703470031,
+    "top5": 1.0,
+    "mean_confidence": 0.9425950050354004,
+    "ece": 0.01196947282515113
   },
+  "previous_overall_accuracy": 0.7339642481598317,
   "per_dataset": {
     "bean_uganda": {
       "n": 862,
-      "accuracy": 0.9350348027842227,
-      "crop_accuracy": 0.994199535962877,
-      "accuracy_given_crop": 0.9396751740139211
+      "accuracy": 0.9477958236658933,
+      "crop_accuracy": 0.9976798143851509,
+      "accuracy_given_crop": 0.9501160092807425,
+      "previous_accuracy": 0.9350348027842227,
+      "unseen_dataset": true
     },
     "coffee_ecuador": {
-      "n": 865,
-      "accuracy": 0.7791907514450868,
-      "crop_accuracy": 0.9202312138728324,
-      "accuracy_given_crop": 0.8092485549132948
+      "n": 260,
+      "accuracy": 0.9692307692307692,
+      "crop_accuracy": 1.0,
+      "accuracy_given_crop": 0.9692307692307692,
+      "previous_accuracy": 0.7807692307692308,
+      "unseen_dataset": false
     },
     "maize_tanzania": {
-      "n": 3000,
-      "accuracy": 0.8573333333333333,
-      "crop_accuracy": 0.9993333333333333,
-      "accuracy_given_crop": 0.8573333333333333
+      "n": 900,
+      "accuracy": 0.9911111111111112,
+      "crop_accuracy": 1.0,
+      "accuracy_given_crop": 0.9911111111111112,
+      "previous_accuracy": 0.8522222222222222,
+      "unseen_dataset": false
     },
     "potato_ethiopia": {
       "n": 430,
-      "accuracy": 0.9697674418604652,
-      "crop_accuracy": 0.9813953488372092,
-      "accuracy_given_crop": 0.986046511627907
+      "accuracy": 0.9813953488372092,
+      "crop_accuracy": 0.9837209302325581,
+      "accuracy_given_crop": 0.9976744186046511,
+      "previous_accuracy": 0.9697674418604652,
+      "unseen_dataset": true
     },
     "potato_india": {
-      "n": 4500,
-      "accuracy": 0.43377777777777776,
-      "crop_accuracy": 0.6688888888888889,
-      "accuracy_given_crop": 0.6611111111111111
+      "n": 1352,
+      "accuracy": 0.8979289940828402,
+      "crop_accuracy": 0.9977810650887574,
+      "accuracy_given_crop": 0.9001479289940828,
+      "previous_accuracy": 0.4430473372781065,
+      "unseen_dataset": false
     }
   }
 }

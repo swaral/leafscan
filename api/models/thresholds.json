@@ -1,0 +1,20 @@
+{
+  "uncertain_below": 0.77,
+  "uncertain_below_fit": {
+    "coverage": 0.9312747426761678,
+    "accuracy": 0.9510287366094201,
+    "accuracy_all": 0.9200316706254948
+  },
+  "uncertain_below_with_crop": 0.53,
+  "uncertain_below_with_crop_fit": {
+    "coverage": 0.9871733966745844,
+    "accuracy": 0.9504331087584216,
+    "accuracy_all": 0.9444180522565321
+  },
+  "fitted_on": {
+    "split": "val",
+    "domain": "field",
+    "images": 6315,
+    "target_accuracy": 0.95
+  }
+}

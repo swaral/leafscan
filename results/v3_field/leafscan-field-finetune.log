@@ -1,0 +1,110 @@
+[{"stream_name":"stdout","time":83.839964499,"data":"Wed Oct 28 07:20:39 2026       \n"}
+,{"stream_name":"stdout","time":83.840029699,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":83.840034883,"data":"| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n"}
+,{"stream_name":"stdout","time":83.840037665,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":83.840040151,"data":"| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n"}
+,{"stream_name":"stdout","time":83.840042593,"data":"| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n"}
+,{"stream_name":"stdout","time":83.840045113,"data":"|                                         |                        |               MIG M. |\n"}
+,{"stream_name":"stdout","time":83.840047589,"data":"|=========================================+========================+======================|\n"}
+,{"stream_name":"stdout","time":83.871701983,"data":"|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":83.871735283,"data":"| N/A   35C    P8              9W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":83.871741416,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":83.871746546,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":83.871752266,"data":"|   1  Tesla T4                       Off |   00000000:00:05.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":83.871756865,"data":"| N/A   38C    P8             11W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":83.871761403,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":83.87176554,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":83.872437281,"data":"\n"}
+,{"stream_name":"stdout","time":83.872450397,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":83.87245488,"data":"| Processes:                                                                              |\n"}
+,{"stream_name":"stdout","time":83.872458821,"data":"|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n"}
+,{"stream_name":"stdout","time":83.872469009,"data":"|        ID   ID                                                               Usage      |\n"}
+,{"stream_name":"stdout","time":83.872473049,"data":"|=========================================================================================|\n"}
+,{"stream_name":"stdout","time":83.873993459,"data":"|  No running processes found                                                             |\n"}
+,{"stream_name":"stdout","time":83.874020709,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":84.19861179,"data":"$ /usr/bin/python3 -u add_field_data.py --data /tmp/leafscan_data --ext /tmp/ext --train-sets potato_india,maize_tanzania,coffee_ecuador\n"}
+,{"stream_name":"stdout","time":210.335615637,"data":"field data added: {\"potato_india\": {\"train\": 2471, \"val\": 677, \"ext_test\": 1352}, \"maize_tanzania\": {\"ext_test\": 900, \"train\": 1650, \"val\": 450}, \"coffee_ecuador\": {\"train\": 476, \"ext_test\": 260, \"val\": 129}}\n"}
+,{"stream_name":"stdout","time":212.951022511,"data":"[done in 2.1 min]\n"}
+,{"stream_name":"stdout","time":212.951454127,"data":"$ /usr/bin/python3 -u train.py --data /tmp/leafscan_data --out /kaggle/working/run --arch plantclef_vitb14 --no-pretrained --init /tmp/models/current/best.pt --img 224 --epochs 4 --batch 128 --lr 5e-05 --wd 0.05 --warmup 0.3 --layer-decay 0.75 --freeze-blocks 4 --ema 0.999 --mixup 0.8 --cutmix 1.0 --mix-prob 0.5 --smoothing 0.1 --degrade 0.5 --field-boost 1.5 --ext-boost 3 --workers 4\n"}
+,{"stream_name":"stdout","time":222.23742173,"data":"device cuda | classes 95 | train 89434 val 11857 test 10598\n"}
+,{"stream_name":"stdout","time":228.39278069,"data":"initialised from /tmp/models/current/best.pt (epoch 8)\n"}
+,{"stream_name":"stdout","time":228.42308322,"data":"trainable params 56.8M of 85.8M\n"}
+,{"stream_name":"stdout","time":228.465737151,"data":"using 2 GPUs (DataParallel)\n"}
+,{"stream_name":"stdout","time":233.837328741,"data":"  ep 1 it 0/698 loss 1.040 lr 4.78e-07 24 img/s\n"}
+,{"stream_name":"stdout","time":342.258899145,"data":"  ep 1 it 100/698 loss 1.459 lr 2.44e-05 114 img/s\n"}
+,{"stream_name":"stdout","time":457.320551171,"data":"  ep 1 it 200/698 loss 1.294 lr 4.83e-05 112 img/s\n"}
+,{"stream_name":"stdout","time":575.367313527,"data":"  ep 1 it 300/698 loss 0.925 lr 4.98e-05 111 img/s\n"}
+,{"stream_name":"stdout","time":692.748919051,"data":"  ep 1 it 400/698 loss 1.973 lr 4.93e-05 111 img/s\n"}
+,{"stream_name":"stdout","time":809.313507184,"data":"  ep 1 it 500/698 loss 0.878 lr 4.85e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":926.397653365,"data":"  ep 1 it 600/698 loss 0.920 lr 4.73e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":1092.823734758,"data":"[epoch 1/4] train loss 1.270 | val acc 0.9529 macroF1 0.9098 lab 0.9971 field 0.9140 | 864s\n"}
+,{"stream_name":"stdout","time":1095.899013858,"data":"  ep 2 it 0/698 loss 1.290 lr 4.58e-05 90 img/s\n"}
+,{"stream_name":"stdout","time":1212.319565593,"data":"  ep 2 it 100/698 loss 0.974 lr 4.40e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":1329.003083769,"data":"  ep 2 it 200/698 loss 0.900 lr 4.19e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":1445.394848207,"data":"  ep 2 it 300/698 loss 1.484 lr 3.95e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":1561.151061986,"data":"  ep 2 it 400/698 loss 0.993 lr 3.70e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":1677.2655528,"data":"  ep 2 it 500/698 loss 0.913 lr 3.43e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":1793.571179911,"data":"  ep 2 it 600/698 loss 1.832 lr 3.14e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":1958.6660374799999,"data":"[epoch 2/4] train loss 1.221 | val acc 0.9552 macroF1 0.9089 lab 0.9978 field 0.9178 | 864s\n"}
+,{"stream_name":"stdout","time":1961.895120523,"data":"  ep 3 it 0/698 loss 0.854 lr 2.86e-05 84 img/s\n"}
+,{"stream_name":"stdout","time":2077.937005608,"data":"  ep 3 it 100/698 loss 1.582 lr 2.56e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":2193.3246587,"data":"  ep 3 it 200/698 loss 0.968 lr 2.26e-05 110 img/s\n"}
+,{"stream_name":"stdout","time":2308.780871791,"data":"  ep 3 it 300/698 loss 1.819 lr 1.97e-05 111 img/s\n"}
+,{"stream_name":"stdout","time":2423.990299215,"data":"  ep 3 it 400/698 loss 1.692 lr 1.69e-05 111 img/s\n"}
+,{"stream_name":"stdout","time":2538.645515484,"data":"  ep 3 it 500/698 loss 1.439 lr 1.41e-05 111 img/s\n"}
+,{"stream_name":"stdout","time":2653.965280265,"data":"  ep 3 it 600/698 loss 0.852 lr 1.16e-05 111 img/s\n"}
+,{"stream_name":"stdout","time":2819.262819774,"data":"[epoch 3/4] train loss 1.241 | val acc 0.9554 macroF1 0.9081 lab 0.9978 field 0.9181 | 859s\n"}
+,{"stream_name":"stdout","time":2822.441271607,"data":"  ep 4 it 0/698 loss 0.918 lr 9.29e-06 75 img/s\n"}
+,{"stream_name":"stdout","time":2939.043067272,"data":"  ep 4 it 100/698 loss 1.681 lr 7.18e-06 109 img/s\n"}
+,{"stream_name":"stdout","time":3054.565076644,"data":"  ep 4 it 200/698 loss 1.420 lr 5.34e-06 110 img/s\n"}
+,{"stream_name":"stdout","time":3169.986729018,"data":"  ep 4 it 300/698 loss 0.928 lr 3.80e-06 110 img/s\n"}
+,{"stream_name":"stdout","time":3285.071031102,"data":"  ep 4 it 400/698 loss 2.013 lr 2.58e-06 111 img/s\n"}
+,{"stream_name":"stdout","time":3400.010521066,"data":"  ep 4 it 500/698 loss 1.683 lr 1.70e-06 111 img/s\n"}
+,{"stream_name":"stdout","time":3515.207902217,"data":"  ep 4 it 600/698 loss 1.517 lr 1.17e-06 111 img/s\n"}
+,{"stream_name":"stdout","time":3679.443068882,"data":"[epoch 4/4] train loss 1.237 | val acc 0.9562 macroF1 0.9121 lab 0.9975 field 0.9200 | 859s\n"}
+,{"stream_name":"stdout","time":3681.276960858,"data":"done. best val macro-F1 0.9121 -\u003e /kaggle/working/run/best.pt\n"}
+,{"stream_name":"stdout","time":3683.680721175,"data":"[done in 57.8 min]\n"}
+,{"stream_name":"stdout","time":3683.730289118,"data":"$ /usr/bin/python3 -u export.py --data /tmp/leafscan_data --run /kaggle/working/run --out /kaggle/working/api_model --fit-thresholds 0.95\n"}
+,{"stream_name":"stdout","time":3746.942966117,"data":"temperature 0.749  val ECE 0.0824 -\u003e 0.0110\n"}
+,{"stream_name":"stdout","time":3746.971389635,"data":"thresholds {\"uncertain_below\": 0.77, \"uncertain_below_fit\": {\"coverage\": 0.9312747426761678, \"accuracy\": 0.9510287366094201, \"accuracy_all\": 0.9200316706254948}, \"uncertain_below_with_crop\": 0.53, \"uncertain_below_with_crop_fit\": {\"coverage\": 0.9871733966745844, \"accuracy\": 0.9504331087584216, \"accuracy_all\": 0.9444180522565321}, \"fitted_on\": {\"split\": \"val\", \"domain\": \"field\", \"images\": 6315, \"target_accuracy\": 0.95}}\n"}
+,{"stream_name":"stderr","time":3747.231744907,"data":"/tmp/leafscan_code/export.py:149: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html\n"}
+,{"stream_name":"stderr","time":3747.231785512,"data":"  torch.onnx.export(wrapper, torch.rand(1, 3, img, img), str(onnx_path), input_names=[\"image\"],\n"}
+,{"stream_name":"stderr","time":3747.301248084,"data":"/usr/local/lib/python3.13/dist-packages/torch/__init__.py:2253: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!\n"}
+,{"stream_name":"stderr","time":3747.301283631,"data":"  if not condition:\n"}
+,{"stream_name":"stdout","time":3753.489092599,"data":"exported /kaggle/working/api_model/leafnet.onnx (343.4 MB), torch vs onnx max diff 1.43e-06\n"}
+,{"stream_name":"stdout","time":3755.248863943,"data":"  test 0/10598\n"}
+,{"stream_name":"stdout","time":3767.288063559,"data":"  test 2048/10598\n"}
+,{"stream_name":"stdout","time":3779.526264256,"data":"  test 4096/10598\n"}
+,{"stream_name":"stdout","time":3792.376642573,"data":"  test 6144/10598\n"}
+,{"stream_name":"stdout","time":3805.311261811,"data":"  test 8192/10598\n"}
+,{"stream_name":"stdout","time":3817.742021952,"data":"  test 10240/10598\n"}
+,{"stream_name":"stdout","time":3836.821365896,"data":"ONNX vs evaluated model on 32 test images: max prob diff 0.0001\n"}
+,{"stream_name":"stdout","time":3847.03841342,"data":"TEST accuracy 0.9567 | macro-F1 0.9102 | top-5 0.9941 | ECE 0.0124\n"}
+,{"stream_name":"stdout","time":3847.038449384,"data":"  field  acc 0.9120  macro-F1 0.8534  (n=5056)\n"}
+,{"stream_name":"stdout","time":3847.038456636,"data":"  lab    acc 0.9975  macro-F1 0.9969  (n=5542)\n"}
+,{"stream_name":"stdout","time":3847.038460897,"data":"  ccmt            acc 0.9537  macro-F1 0.9543  (n=1600)\n"}
+,{"stream_name":"stdout","time":3847.038465159,"data":"  plantdoc        acc 0.7664  macro-F1 0.7888  (n=244)\n"}
+,{"stream_name":"stdout","time":3847.038526627,"data":"  plantpathology  acc 0.9847  macro-F1 0.9845  (n=1567)\n"}
+,{"stream_name":"stdout","time":3847.038542332,"data":"  plantvillage    acc 0.9975  macro-F1 0.9969  (n=5542)\n"}
+,{"stream_name":"stdout","time":3847.03866297,"data":"  plantwild       acc 0.8237  macro-F1 0.8111  (n=1645)\n"}
+,{"stream_name":"stdout","time":3848.684367138,"data":"[done in 2.7 min]\n"}
+,{"stream_name":"stdout","time":3864.958857277,"data":"$ /usr/bin/python3 -u external_test.py --train-data /tmp/leafscan_data --models current=/tmp/models/current field=/tmp/models/field --out /kaggle/working/external --reuse /kaggle/input/notebooks/thestonedape/leafscan-external-test/external_data.tar --exclude /tmp/leafscan_data/ext_used.json --threshold 0.77 --threshold 0.55\n"}
+,{"stream_name":"stdout","time":3883.33022212,"data":"reusing 9657 prepared external images\n"}
+,{"stream_name":"stdout","time":3895.314850338,"data":"removed near-duplicates of training images: {'bean_uganda': 1}\n"}
+,{"stream_name":"stdout","time":3895.541816387,"data":"excluded 5853 images used in training/validation\n"}
+,{"stream_name":"stdout","time":4138.465712822,"data":"[current               ] acc 0.7340  crop 0.8741  given-crop 0.8183  top5 0.9529  ece 0.113\n"}
+,{"stream_name":"stdout","time":4138.465789609,"data":"[current+tta           ] acc 0.7411  crop 0.8820  given-crop 0.8220  top5 0.9577  ece 0.090\n"}
+,{"stream_name":"stdout","time":4138.465798408,"data":"[field                 ] acc 0.9456  crop 0.9968  given-crop 0.9487  top5 1.0000  ece 0.012\n"}
+,{"stream_name":"stdout","time":4138.465807331,"data":"[field+tta             ] acc 0.9477  crop 0.9982  given-crop 0.9495  top5 1.0000  ece 0.015\n"}
+,{"stream_name":"stdout","time":4138.465822575,"data":"[ensemble              ] acc 0.9293  crop 0.9882  given-crop 0.9387  top5 0.9989  ece 0.102\n"}
+,{"stream_name":"stdout","time":4138.465826224,"data":"[ensemble+tta          ] acc 0.9319  crop 0.9913  given-crop 0.9393  top5 0.9992  ece 0.107\n"}
+,{"stream_name":"stdout","time":4140.245076651,"data":"EXTERNAL DONE {\"current\": 0.734, \"current+tta\": 0.7411, \"field\": 0.9456, \"field+tta\": 0.9477, \"ensemble\": 0.9293, \"ensemble+tta\": 0.9319} in 4.6 min\n"}
+,{"stream_name":"stdout","time":4141.686045184,"data":"[done in 4.6 min]\n"}
+,{"stream_name":"stdout","time":4141.686085513,"data":"FIELD KERNEL DONE in 69.0 min\n"}
+,{"stream_name":"stderr","time":4143.895952432,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":4143.896000654,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":4144.182802452,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":4144.182831783,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":4145.022249663,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":4146.131118868,"data":"[NbConvertApp] Writing 500236 bytes to __results__.html\n"}
+]
