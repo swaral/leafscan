@@ -54,7 +54,9 @@ export default function ResultCard({ r }) {
   const d = r.disease;
   const noDx = NO_DIAGNOSIS[r.status];
   const title = noDx ? noDx.title : d.type === 'Healthy' ? `Healthy ${d.crop.toLowerCase()} leaf` : d.name;
-  const showCandidates = r.status !== 'unusable_photo' && r.status !== 'no_leaf';
+  // Candidates are shown for diagnoses and 'uncertain'; for a crop mismatch they would be the
+  // forced (wrong-crop) classes, so only the model's own reading (in the reason) is shown.
+  const showCandidates = !noDx || r.status === 'uncertain';
   return (
     <div className="stack fade-in">
       <div className="card">
