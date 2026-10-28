@@ -165,6 +165,52 @@ run(sys.executable, "-u", "external_test.py", "--train-data", "/tmp/leafscan_dat
 print(f"EXTERNAL KERNEL DONE in {(time.time() - t_start) / 60:.1f} min", flush=True)
 '''
 
+# Continue training the app model with field photos from three external datasets (potato India,
+# maize Tanzania, coffee Ecuador; 30% of each kept as an in-source test), fit field thresholds,
+# then compare with the current model on what is left: those test parts plus potato Ethiopia and
+# beans Uganda, which stay completely unseen.
+FIELD = '''
+t_start = time.time()
+pip("timm>=1.0", "onnx", "onnxruntime", "onnxscript", "pyarrow")
+def find(pattern):
+    hits = glob.glob(pattern, recursive=True)
+    if not hits:
+        subprocess.run(["find", "/kaggle/input", "-maxdepth", "5"], check=False)
+        raise SystemExit(f"missing input: {pattern}")
+    return hits[0]
+EXT_TAR = find("/kaggle/input/**/external_data.tar")
+subprocess.run(["tar", "-xf", find("/kaggle/input/**/leafscan_data.tar"), "-C", "/tmp"], check=True)
+subprocess.run(["tar", "-xf", EXT_TAR, "-C", "/tmp"], check=True)
+DATA, RUN = Path("/tmp/leafscan_data"), WORK / "run"
+cur = Path("/tmp/models/current"); cur.mkdir(parents=True, exist_ok=True)
+shutil.copy(find("/kaggle/input/**/leafscan-plantclef-vit-epoch8/**/best.pt"), cur / "best.pt")
+shutil.copy(find("/kaggle/input/**/leafscan-export-plantclef/**/api_model/train_history.json"), cur / "train_history.json")
+subprocess.run(["nvidia-smi"], check=False)
+
+run(sys.executable, "-u", "add_field_data.py", "--data", DATA, "--ext", "/tmp/ext",
+    "--train-sets", "potato_india,maize_tanzania,coffee_ecuador", timeout=3600)
+shutil.copy(DATA / "ext_split.json", WORK / "ext_split.json")
+run(sys.executable, "-u", "train.py", "--data", DATA, "--out", RUN,
+    "--arch", "plantclef_vitb14", "--no-pretrained", "--init", cur / "best.pt", "--img", 224,
+    "--epochs", __EPOCHS__, "--batch", 128, "--lr", 5e-5, "--wd", 0.05, "--warmup", 0.3,
+    "--layer-decay", 0.75, "--freeze-blocks", 4, "--ema", 0.999, "--mixup", 0.8, "--cutmix", 1.0, "--mix-prob", 0.5,
+    "--smoothing", 0.1, "--degrade", 0.5, "--field-boost", 1.5, "--ext-boost", 3, "--workers", 4, *__EXTRA__,
+    timeout=__TRAIN_TIMEOUT__)
+(RUN / "last.pt").unlink(missing_ok=True)
+run(sys.executable, "-u", "export.py", "--data", DATA, "--run", RUN, "--out", WORK / "api_model",
+    "--fit-thresholds", 0.95, timeout=3600)
+shutil.copy(DATA / "ext_used.json", WORK / "api_model" / "ext_used.json")
+shutil.make_archive(str(WORK / "leafscan_api_model"), "zip", WORK / "api_model")
+th = json.loads((WORK / "api_model" / "thresholds.json").read_text())
+new = Path("/tmp/models/field"); new.mkdir(parents=True, exist_ok=True)
+shutil.copy(RUN / "best.pt", new / "best.pt")
+shutil.copy(WORK / "api_model" / "train_history.json", new / "train_history.json")
+run(sys.executable, "-u", "external_test.py", "--train-data", DATA, "--models", f"current={cur}", f"field={new}",
+    "--out", WORK / "external", "--reuse", EXT_TAR, "--exclude", DATA / "ext_used.json",
+    "--threshold", th["uncertain_below"], "--threshold", 0.55, *__EXT_EXTRA__, timeout=3 * 3600)
+print(f"FIELD KERNEL DONE in {(time.time() - t_start) / 60:.1f} min", flush=True)
+'''
+
 FINETUNE = '''
 t_start = time.time()
 pip("timm>=1.0", "onnx", "onnxruntime", "onnxscript")
@@ -268,6 +314,18 @@ if __name__ == "__main__":
             "external_test.py"], gpu=True,
            sources=[f"{USER}/leafscan-build-dataset", f"{USER}/leafscan-export-plantclef", f"{USER}/leafscan-resume-pp"],
            datasets=[f"{USER}/leafscan-plantclef-vit-epoch8"], competitions=["cassava-leaf-disease-classification"])
+    field_files = ["taxonomy.py", "sources.py", "build_dataset.py", "model.py", "train.py", "export.py",
+                   "external_test.py", "add_field_data.py"]
+    field_sources = [f"{USER}/leafscan-build-dataset", f"{USER}/leafscan-external-test", f"{USER}/leafscan-export-plantclef"]
+
+    def field(epochs, extra, ext_extra, train_timeout):
+        return (FIELD.replace("__EPOCHS__", str(epochs)).replace("__EXTRA__", repr(extra))
+                .replace("__EXT_EXTRA__", repr(ext_extra)).replace("__TRAIN_TIMEOUT__", str(train_timeout)))
+    kernel(out / "field", "leafscan-field-finetune", "LeafScan Field Finetune", field(4, [], [], 4 * 3600),
+           field_files, gpu=True, sources=field_sources, datasets=[f"{USER}/leafscan-plantclef-vit-epoch8"])
+    kernel(out / "smoke_field", "leafscan-field-smoke", "LeafScan Field Smoke",
+           field(1, ["--max-steps-per-epoch", 30], ["--max-items", 300], 1800),
+           field_files, gpu=True, sources=field_sources, datasets=[f"{USER}/leafscan-plantclef-vit-epoch8"])
     # 1 epoch x 40 steps on the real data, real DataLoader and real export: run this first.
     kernel(out / "smoke", "leafscan-finetune-smoke", "LeafScan Finetune Smoke", finetune(1, ["--max-steps-per-epoch", 40], 1200),
            files, gpu=True, sources=sources)

@@ -33,6 +33,7 @@ from PIL import Image, ImageDraw, ImageOps
 
 EXT = Path("/tmp/ext")
 CAP = 1500          # max images per (dataset, class)
+SELECTIVE = [0.5, 0.7, 0.9]   # confidence thresholds reported as coverage / accuracy
 UA = "Mozilla/5.0"
 MENDELEY = "https://data.mendeley.com/public-api/datasets"
 random.seed(0)
@@ -393,7 +394,7 @@ def summarise(p, y, classes):
         "selective": {f"conf>={th}": {"coverage": float((p.max(1) >= th).mean()),
                                       "accuracy": (float((pred == y)[p.max(1) >= th].mean())
                                                    if (p.max(1) >= th).any() else None)}
-                      for th in (0.5, 0.7, 0.9)},
+                      for th in SELECTIVE},
     }
 
 
@@ -405,7 +406,11 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--save-images", default=None, help="write the prepared external set to this tar for reuse")
     ap.add_argument("--reuse", default=None, help="tar written by --save-images: skip downloading")
+    ap.add_argument("--exclude", default=None, help="json list of external paths used in training (ext_used.json)")
+    ap.add_argument("--threshold", type=float, action="append", default=[], help="extra selective threshold")
+    ap.add_argument("--max-items", type=int, default=0, help="random subset (smoke tests)")
     args = ap.parse_args()
+    SELECTIVE.extend(t for t in args.threshold if t not in SELECTIVE)
     out = Path(args.out)
     dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     t0 = time.time()
@@ -466,6 +471,14 @@ def main():
                                                        "near_duplicates_removed": dict(n_dup)}))
         subprocess.run(["tar", "-cf", args.save_images, "-C", str(EXT.parent), EXT.name], check=True)
         print(f"saved prepared external set -> {args.save_images}", flush=True)
+
+    if args.exclude:   # images used to train/validate a model are not a test set any more
+        used = set(json.loads(Path(args.exclude).read_text()))
+        n0 = len(items)
+        items = [it for it in items if str(Path(it["path"]).relative_to(EXT)).replace("\\", "/") not in used]
+        print(f"excluded {n0 - len(items)} images used in training/validation", flush=True)
+    if args.max_items and len(items) > args.max_items:
+        items = random.sample(items, args.max_items)
 
     # 3. evaluate
     y = np.array([classes.index(it["key"]) for it in items])

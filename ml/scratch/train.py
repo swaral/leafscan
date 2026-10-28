@@ -266,6 +266,9 @@ def main():
     ap.add_argument("--layer-decay", type=float, default=1.0, help="layer-wise LR decay (ViT fine-tuning: 0.75)")
     ap.add_argument("--degrade", type=float, default=0.5, help="probability of acquisition-degradation aug")
     ap.add_argument("--freeze-blocks", type=int, default=0, help="ViT: freeze patch embed + first N blocks")
+    ap.add_argument("--init", default=None, help="start from a trained best.pt (its EMA weights)")
+    ap.add_argument("--ext-boost", type=float, default=1.0,
+                    help="extra sampling weight for added external field photos (source ext_*)")
     args = ap.parse_args()
 
     torch.manual_seed(0); np.random.seed(0)
@@ -283,7 +286,7 @@ def main():
     train_rows = splits["train"]
     counts = Counter(int(r["label"]) for r in train_rows)
     w = [(1 / math.sqrt(counts[int(r["label"])])) * (args.field_boost if r["domain"] == "field" else 1.0)
-         for r in train_rows]
+         * (args.ext_boost if r["source"].startswith("ext_") else 1.0) for r in train_rows]
     sampler = WeightedRandomSampler(w, num_samples=len(train_rows), replacement=True)
     kw = dict(batch_size=args.batch, num_workers=args.workers, collate_fn=collate,
               pin_memory=False, persistent_workers=args.workers > 0,
@@ -295,6 +298,11 @@ def main():
 
     core = build_model(args.arch, n_classes, pretrained=not args.no_pretrained, img=args.img,
                        checkpoint=args.checkpoint).to(device)
+    if args.init:
+        init = torch.load(args.init, map_location="cpu", weights_only=False)
+        assert init["classes"] == classes, "--init checkpoint has a different class list"
+        core.load_state_dict(init["ema"])
+        print(f"initialised from {args.init} (epoch {init.get('epoch')})", flush=True)
     core = core.to(memory_format=torch.channels_last)
     if args.freeze_blocks and hasattr(core, "freeze_blocks"):
         core.freeze_blocks(args.freeze_blocks)

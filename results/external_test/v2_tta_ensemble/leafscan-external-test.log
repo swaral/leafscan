@@ -1,0 +1,36 @@
+[{"stream_name":"stdout","time":473.199227133,"data":"$ /usr/bin/python3 -u external_test.py --train-data /tmp/leafscan_data --models current=/tmp/models/raw preprocessed=/tmp/models/pp --out /kaggle/working --save-images /kaggle/working/external_data.tar\n"}
+,{"stream_name":"stdout","time":1518.208777031,"data":"[potato_india] 4500 usable images (17.3 min)\n"}
+,{"stream_name":"stdout","time":1520.562128502,"data":"[potato_ethiopia] 430 usable images (0.0 min)\n"}
+,{"stream_name":"stdout","time":1913.530113711,"data":"  maize_tanzania: {'MSV': 1500, 'Healthy': 1500}\n"}
+,{"stream_name":"stdout","time":1913.592388393,"data":"[maize_tanzania] 3000 usable images (6.6 min)\n"}
+,{"stream_name":"stdout","time":1922.055788047,"data":"  bean_uganda: {'bean_rust': 436, 'healthy': 427}\n"}
+,{"stream_name":"stdout","time":1922.06138884,"data":"[bean_uganda] 863 usable images (0.1 min)\n"}
+,{"stream_name":"stdout","time":2007.214770396,"data":"[coffee_ecuador] 865 usable images (1.4 min)\n"}
+,{"stream_name":"stdout","time":2007.53866775,"data":"  cassava: competition data not attached\n"}
+,{"stream_name":"stdout","time":2007.539827434,"data":"[cassava_uganda] 0 usable images (0.0 min)\n"}
+,{"stream_name":"stdout","time":2222.056914568,"data":"removed near-duplicates of training images: {'bean_uganda': 1}\n"}
+,{"stream_name":"stdout","time":2226.680274773,"data":"saved prepared external set -\u003e /kaggle/working/external_data.tar\n"}
+,{"stream_name":"stderr","time":2597.035636157,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":2597.255255289,"data":"[transformers] A new version of the following files was downloaded from https://huggingface.co/ZhengPeng7/BiRefNet_lite:\n"}
+,{"stream_name":"stderr","time":2597.255291187,"data":"- BiRefNet_config.py\n"}
+,{"stream_name":"stderr","time":2597.255296068,"data":". Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.\n"}
+,{"stream_name":"stderr","time":2598.858847791,"data":"[transformers] A new version of the following files was downloaded from https://huggingface.co/ZhengPeng7/BiRefNet_lite:\n"}
+,{"stream_name":"stderr","time":2598.858894479,"data":"- birefnet.py\n"}
+,{"stream_name":"stderr","time":2598.858902009,"data":". Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.\n"}
+,{"stream_name":"stderr","time":2602.289289673,"data":"\rLoading weights:   0%|          | 0/586 [00:00\u003c?, ?it/s]\rLoading weights:  42%|████▏     | 246/586 [00:00\u003c00:00, 2432.01it/s]\rLoading weights:  87%|████████▋ | 511/586 [00:00\u003c00:00, 2558.81it/s]\rLoading weights: 100%|██████████| 586/586 [00:00\u003c00:00, 2550.65it/s]\n"}
+,{"stream_name":"stdout","time":3721.211625686,"data":"[current               ] acc 0.6650  crop 0.8370  given-crop 0.7748  top5 0.9279  ece 0.159\n"}
+,{"stream_name":"stdout","time":3721.21168456,"data":"[current+tta           ] acc 0.6710  crop 0.8437  given-crop 0.7790  top5 0.9360  ece 0.132\n"}
+,{"stream_name":"stdout","time":3721.211729105,"data":"[preprocessed          ] acc 0.6815  crop 0.8713  given-crop 0.7649  top5 0.9314  ece 0.143\n"}
+,{"stream_name":"stdout","time":3721.211738133,"data":"[preprocessed+tta      ] acc 0.6921  crop 0.8762  given-crop 0.7722  top5 0.9350  ece 0.110\n"}
+,{"stream_name":"stdout","time":3721.21177384,"data":"[ensemble              ] acc 0.6850  crop 0.8598  given-crop 0.7778  top5 0.9338  ece 0.108\n"}
+,{"stream_name":"stdout","time":3721.2119088,"data":"[ensemble+tta          ] acc 0.6932  crop 0.8684  given-crop 0.7840  top5 0.9392  ece 0.086\n"}
+,{"stream_name":"stdout","time":3723.175850477,"data":"EXTERNAL DONE {\"current\": 0.665, \"current+tta\": 0.671, \"preprocessed\": 0.6815, \"preprocessed+tta\": 0.6921, \"ensemble\": 0.685, \"ensemble+tta\": 0.6932} in 54.0 min\n"}
+,{"stream_name":"stdout","time":3728.665437177,"data":"[done in 54.3 min]\n"}
+,{"stream_name":"stdout","time":3728.665473519,"data":"EXTERNAL KERNEL DONE in 62.1 min\n"}
+,{"stream_name":"stderr","time":3730.820710664,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":3730.820735166,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":3731.125571197,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":3731.125596397,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":3731.9328222,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":3733.037346884,"data":"[NbConvertApp] Writing 438076 bytes to __results__.html\n"}
+]

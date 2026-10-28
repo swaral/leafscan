@@ -59,6 +59,24 @@ def ece(probs, y, bins=15):
     return float(out)
 
 
+def fit_thresholds(probs, y, classes, target, background="Background_without_leaves"):
+    """Lowest confidence threshold at which accepted field photos reach `target` accuracy,
+    without and with the user's crop selection (probabilities renormalised within the true crop)."""
+    crops = np.array([c.split("___")[0] for c in classes])
+    allowed = (crops[y][:, None] == crops[None, :]) | (np.array(classes) == background)[None, :]
+    with_crop = np.where(allowed, probs, 0.0)
+    with_crop /= with_crop.sum(1, keepdims=True)
+    out = {}
+    for name, p in (("uncertain_below", probs), ("uncertain_below_with_crop", with_crop)):
+        conf, correct = p.max(1), p.argmax(1) == y
+        t = next((float(t) for t in np.round(np.arange(0.30, 0.951, 0.01), 2)
+                  if (conf >= t).sum() >= 50 and correct[conf >= t].mean() >= target), 0.95)
+        out[name] = t
+        out[f"{name}_fit"] = {"coverage": float((conf >= t).mean()), "accuracy": float(correct[conf >= t].mean()),
+                              "accuracy_all": float(correct.mean())}
+    return out
+
+
 def prf(y, p, n):
     rows = []
     for c in range(n):
@@ -91,6 +109,8 @@ def main():
     ap.add_argument("--run", required=True)
     ap.add_argument("--out", default=None)
     ap.add_argument("--batch", type=int, default=128)
+    ap.add_argument("--fit-thresholds", type=float, default=0.0,
+                    help="write thresholds.json: confidence needed for this accuracy on field validation photos")
     args = ap.parse_args()
     root, run = Path(args.data), Path(args.run)
     out = Path(args.out) if args.out else run / "api_model"
@@ -114,6 +134,14 @@ def main():
     ece_before = ece(F.softmax(val_logits, 1).numpy(), val_y.numpy())
     ece_after = ece(F.softmax(val_logits / T, 1).numpy(), val_y.numpy())
     print(f"temperature {T:.3f}  val ECE {ece_before:.4f} -> {ece_after:.4f}", flush=True)
+    if args.fit_thresholds:
+        field = np.array([r["domain"] == "field" for r in splits["val"]])
+        th = fit_thresholds(F.softmax(val_logits / T, 1).numpy()[field], val_y.numpy()[field], classes,
+                            args.fit_thresholds)
+        th["fitted_on"] = {"split": "val", "domain": "field", "images": int(field.sum()),
+                           "target_accuracy": args.fit_thresholds}
+        (out / "thresholds.json").write_text(json.dumps(th, indent=2))
+        print("thresholds", json.dumps(th), flush=True)
 
     # ---- ONNX export (API contract)
     wrapper = ExportWrapper(net.cpu().float(), T).eval()
